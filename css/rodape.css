@@ -1,0 +1,22 @@
+.footer{
+  background: #1b1b1b;
+  color:#212529;
+position:static;
+bottom:0px;
+left:0px;
+height:auto;
+width:100%;
+
+}
+
+
+ 
+ 
+    .footer a  {
+      color:white 50%;
+      transition: color .2s;
+      
+    }      
+    
+
+

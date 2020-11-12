@@ -1,0 +1,205 @@
+ * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FF9900;
+  }
+  h1{
+font-family: sans-serif, Arial;
+    font-size: 170%;
+
+  }
+  .column
+  {
+      width:100%;
+      float:center;
+      padding:100px 10px;
+  }
+  .Div{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      max-width:100%;
+    
+      margin-left: 25%;
+      margin-right:25%;
+
+    
+     border: 20%;
+
+      background-color:rgba(255,255,255,0.9);
+      text-align:center;
+      border-radius:30px;
+      padding-bottom:0%;
+      padding:3%;
+      margin-top: 10%;
+       
+     
+}
+
+
+.Div input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.Div label {
+    display: inline-block;
+    background-color: #ddd;
+    padding: 10px 20px;
+    font-family: sans-serif, Arial;
+    font-size: 18px;
+    border: 2px solid #444;
+    border-radius: 4px;
+}
+
+
+
+
+.Div label:hover {
+  background-color: #dfd;
+}
+
+
+.Div input[type="radio"]:focus + label {
+    border: 2px dashed #444;
+}
+.Div input[type="button"]:focus + label {
+    border: 2px dashed #444;
+}
+
+.Div input[type="radio"]:checked + label {
+    background-color: #bfb;
+    border-color: #4c4;
+}
+
+
+.Div input[type="button"]:checked + label {
+    background-color: #bfb;
+    border-color: #4c4;
+}
+
+
+  .row:after{
+      content:"";
+      display:table;
+      clear:both;
+  }
+
+ 
+
+  @media screen and (max-width:600px)
+  {
+      .column
+      {
+          width:100%;
+          display:block;
+          margin-bottom: 20px;
+      }
+  }
+
+  
+
+  button
+  {
+      border:0;
+      padding:15px;
+      display: inline-block;
+      color:#181818;
+      background-color:#181818;
+      cursor:pointer;
+      width:30%;
+      border-radius:20px;
+      font-size:18px;
+      text-align:center;
+      margin-left:2.5%;
+      float:left;
+  }
+
+  a{
+      text-decoration: none;
+      font-size:22px;
+      color:black;
+  }
+
+  a:hover,button:hover{
+      opacity: 0.6;
+  }
+input {
+  
+  
+ border-radius:15px;
+ font-size:18px;
+  width: 30%;
+  padding: 1% 1%;
+  margin: 3px 0;
+  box-sizing: border-box;
+
+}
+
+
+.active { display: block !important }
+
+.navbar navbar-dark bg-dark {
+ 
+    background-color: black;
+}
+
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+.topo {
+    height: 60px;
+    background-color: black;
+}
+.topointerior {
+    width: 1000px;
+    margin: auto;
+    color: black;
+}
+.logomarca {
+    float: left;
+    font-size: 24px;
+    line-height: 60px;
+    font-weight: bold;    
+}
+img {
+    width: 150;
+}
+.menu {
+    float: right;
+}
+.menu ul,
+.menu li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    font-weight: bold;
+}
+.menu li {
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 60px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.menu li:hover {
+    background-color: #808080;
+    color: #12c1ee;
+}
+.rodape {
+    height: 50px;
+    background-color: #353535;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    color: #12c1ee;
+    margin-top: 40px;
+}
