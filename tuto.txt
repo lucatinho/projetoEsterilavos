@@ -1,0 +1,21 @@
+Olá Edjunior, bom dia.
+
+Seu perfil foi um dos aprovados para a próxima fase, entre 23 candidatos, o seu perfil se destacou.
+ 
+Nessa fase nós trazemos para os selecionados, um projeto que precisa ser refatorado. Na vida de um programador, 
+essa é uma das atividades que mais se faz, além de criar muitas soluções também.
+ 
+Desse modo, o projeto abaixo tem bugs que precisam ser melhorados, você deve analisar o mapa mental e implementar as mudanças indicadas no mapa mental.
+ 
+Atenção: você deve baixar o projeto em seu computador e montar o ambiente, não se deve mudar o projeto hospedado no servidor.
+ 
+Hospedagem: https://www.hostinger.com.br/cpanel-login
+domínio: http://esterilavos.com/
+e-mail: caiotimao5@hotmail.com
+Senha: Esterilav540
+Mapa mental: https://miro.com/welcomeonboard/B7UEuUiky9lDyjR7oUZ5F1aupiN9a6fKBc3cefxNRPgMNO4uWkHEbLUFtVyOS3d7 
+ 
+Boa sorte, o prazo fatal para apresentação do projeto é dia 27/11.
+ 
+Qualquer dúvida, por favor nos avise.
+Atenciosamente,

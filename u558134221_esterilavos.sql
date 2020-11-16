@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 12-Nov-2020 às 21:41
--- Versão do servidor: 10.4.11-MariaDB
--- versão do PHP: 7.2.31
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 12/11/2020 às 22:21
+-- Versão do servidor: 10.4.14-MariaDB-cll-lve
+-- Versão do PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `arquivo`
+-- Estrutura para tabela `arquivo`
 --
 
 CREATE TABLE `arquivo` (
@@ -36,7 +37,7 @@ CREATE TABLE `arquivo` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cliente`
+-- Estrutura para tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -50,7 +51,7 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `cliente`
+-- Despejando dados para a tabela `cliente`
 --
 
 INSERT INTO `cliente` (`id_Cliente`, `Nome`, `Endereco`, `Cidade`, `Uf`, `Solicitante`, `Setor`) VALUES
@@ -170,7 +171,7 @@ INSERT INTO `cliente` (`id_Cliente`, `Nome`, `Endereco`, `Cidade`, `Uf`, `Solici
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `img`
+-- Estrutura para tabela `img`
 --
 
 CREATE TABLE `img` (
@@ -181,7 +182,7 @@ CREATE TABLE `img` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `item`
+-- Estrutura para tabela `item`
 --
 
 CREATE TABLE `item` (
@@ -195,7 +196,7 @@ CREATE TABLE `item` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `os`
+-- Estrutura para tabela `os`
 --
 
 CREATE TABLE `os` (
@@ -216,7 +217,7 @@ CREATE TABLE `os` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `os`
+-- Despejando dados para a tabela `os`
 --
 
 INSERT INTO `os` (`idOS`, `id_OsCliente`, `AutoCN`, `AutoCS`, `Modelo`, `AnoFabrica`, `NPART`, `Obs`, `Status`, `DATA`, `img`, `ANO`, `MES`, `tipo`) VALUES
@@ -264,7 +265,7 @@ INSERT INTO `os` (`idOS`, `id_OsCliente`, `AutoCN`, `AutoCS`, `Modelo`, `AnoFabr
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `peca`
+-- Estrutura para tabela `peca`
 --
 
 CREATE TABLE `peca` (
@@ -278,7 +279,7 @@ CREATE TABLE `peca` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `peca`
+-- Despejando dados para a tabela `peca`
 --
 
 INSERT INTO `peca` (`id_peca`, `Nome`, `NumeroS`, `Tamanho`, `Cor`, `Marca`, `Tipo`) VALUES
@@ -291,10 +292,10 @@ INSERT INTO `peca` (`id_peca`, `Nome`, `NumeroS`, `Tamanho`, `Cor`, `Marca`, `Ti
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pecac`
+-- Estrutura para tabela `PecaC`
 --
 
-CREATE TABLE `pecac` (
+CREATE TABLE `PecaC` (
   `id` int(11) NOT NULL,
   `Nome` varchar(52) COLLATE utf8mb4_unicode_ci NOT NULL,
   `qtd` varchar(52) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -302,16 +303,16 @@ CREATE TABLE `pecac` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `pecac`
+-- Despejando dados para a tabela `PecaC`
 --
 
-INSERT INTO `pecac` (`id`, `Nome`, `qtd`, `order_id`) VALUES
+INSERT INTO `PecaC` (`id`, `Nome`, `qtd`, `order_id`) VALUES
 (1, 'gdfgds', '445', '54');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_order_items`
+-- Estrutura para tabela `tbl_order_items`
 --
 
 CREATE TABLE `tbl_order_items` (
@@ -325,7 +326,7 @@ CREATE TABLE `tbl_order_items` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_unit`
+-- Estrutura para tabela `tbl_unit`
 --
 
 CREATE TABLE `tbl_unit` (
@@ -334,7 +335,7 @@ CREATE TABLE `tbl_unit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tbl_unit`
+-- Despejando dados para a tabela `tbl_unit`
 --
 
 INSERT INTO `tbl_unit` (`unit_id`, `unit_name`) VALUES
@@ -356,7 +357,7 @@ INSERT INTO `tbl_unit` (`unit_id`, `unit_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tecnico`
+-- Estrutura para tabela `tecnico`
 --
 
 CREATE TABLE `tecnico` (
@@ -369,7 +370,7 @@ CREATE TABLE `tecnico` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `tecnico`
+-- Despejando dados para a tabela `tecnico`
 --
 
 INSERT INTO `tecnico` (`id`, `Nome`, `email`, `Senha`, `Telefone`, `Endereco`) VALUES
@@ -384,7 +385,7 @@ INSERT INTO `tecnico` (`id`, `Nome`, `email`, `Senha`, `Telefone`, `Endereco`) V
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Estrutura para tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -396,7 +397,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Despejando dados para a tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `usuario`, `senha`) VALUES
@@ -421,74 +422,74 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `usuario`, `senha`) VALUES
 (20, 'allan', 'allan', 'allan', '$2y$10$vKIW6GHu2XE8mukrlYjhquUklEcOT7w7APKl/Sy9eJ85hmVR8AQBm'),
 (21, 'usuario', 'usuario', 'usuario', '$2y$10$MJoLhKILk3tRuWo/jR42AuHZSO64wcrg4S1y/FonJA0rqFXnhkENK'),
 (22, 'caio', 'caio', 'caio', '$2y$10$m3bxhWcQ3oUy136mi7p/COop/9kocF4vzBfIzEoQhzfZV0jr4ioXm'),
-(23, 'ed', 'ed', 'ed', '$2y$10$x15zlz73zZJxu2rFRdvoTu67jiX.Bu1VOiekYxNptrgcX8pn8nVg.');
+(23, 'lucass', 'lucass', 'luc', '$2y$10$x15zlz73zZJxu2rFRdvoTu67jiX.Bu1VOiekYxNptrgcX8pn8nVg.');
 
 --
--- Índices para tabelas despejadas
+-- Índices de tabelas apagadas
 --
 
 --
--- Índices para tabela `cliente`
+-- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_Cliente`);
 
 --
--- Índices para tabela `img`
+-- Índices de tabela `img`
 --
 ALTER TABLE `img`
   ADD PRIMARY KEY (`idimg`);
 
 --
--- Índices para tabela `item`
+-- Índices de tabela `item`
 --
 ALTER TABLE `item`
   ADD PRIMARY KEY (`item_id`);
 
 --
--- Índices para tabela `os`
+-- Índices de tabela `os`
 --
 ALTER TABLE `os`
   ADD PRIMARY KEY (`idOS`);
 
 --
--- Índices para tabela `peca`
+-- Índices de tabela `peca`
 --
 ALTER TABLE `peca`
   ADD PRIMARY KEY (`id_peca`);
 
 --
--- Índices para tabela `pecac`
+-- Índices de tabela `PecaC`
 --
-ALTER TABLE `pecac`
+ALTER TABLE `PecaC`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `tbl_order_items`
+-- Índices de tabela `tbl_order_items`
 --
 ALTER TABLE `tbl_order_items`
   ADD PRIMARY KEY (`order_items_id`);
 
 --
--- Índices para tabela `tbl_unit`
+-- Índices de tabela `tbl_unit`
 --
 ALTER TABLE `tbl_unit`
   ADD PRIMARY KEY (`unit_id`);
 
 --
--- Índices para tabela `tecnico`
+-- Índices de tabela `tecnico`
 --
 ALTER TABLE `tecnico`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `usuarios`
+-- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
@@ -522,9 +523,9 @@ ALTER TABLE `peca`
   MODIFY `id_peca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT de tabela `pecac`
+-- AUTO_INCREMENT de tabela `PecaC`
 --
-ALTER TABLE `pecac`
+ALTER TABLE `PecaC`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
