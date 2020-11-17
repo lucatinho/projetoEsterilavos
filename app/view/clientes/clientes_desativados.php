@@ -20,18 +20,18 @@ $total = $dbd->query("select * from cliente")->num_rows;
 $pages = ceil($total / $perPage);
 
 $rows = $dbd->query($sql);
-
 ?>
-</head>
 
-<body class="bg-light">
 
+<body>
     <div class="container">
-
         <div class="row" style="margin-top: 80px;">
+
             <div class="col-md-10 col-md-offset-1">
                 <table class="table">
-
+                    <center>
+                        <h1>Clientes Excluídos</h1>
+                    </center>
                     <div class="col-md-12 text-center">
                         <?php
                         $png = 1;
