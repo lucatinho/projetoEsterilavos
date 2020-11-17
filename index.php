@@ -153,7 +153,6 @@ $rows = $dbd->query($sql);
                         </script>
                         <!-- Button HTML (to Trigger Modal) -->
                         <a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">PDF</a>
-
                         <!-- Modal HTML -->
                         <div id="myModal" class="modal fade">
                             <div class="modal-dialog">
@@ -226,6 +225,17 @@ $rows = $dbd->query($sql);
                             </tbody>
                         </table>
                     </form>
+                    
+                    <!-- css trash -->
+                    <style type="text/css">
+                        #trash {
+                            float: right;
+                        }
+                    </style>
+
+                    <!-- img trash -->
+                    <img href="#" src="imgs/trash.png" width=40 height=40 id="trash">
+
                     <center>
                         <ul class="pagination">
                             <?php for ($i = 1; $i <= $pages; $i++) : ?>
