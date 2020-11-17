@@ -24,12 +24,6 @@ $rows = $dbd->query($sql);
 ?>
 
 
-
-
-
-
-
-
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -225,7 +219,7 @@ $rows = $dbd->query($sql);
                             </tbody>
                         </table>
                     </form>
-                    
+
                     <!-- css trash -->
                     <style type="text/css">
                         #trash {
@@ -234,7 +228,10 @@ $rows = $dbd->query($sql);
                     </style>
 
                     <!-- img trash -->
-                    <img href="#" src="imgs/trash.png" width=40 height=40 id="trash">
+                    <a href="app\view\clientes_desativados\clientes_desativados.php">
+                    <img src="imgs/trash.png" width=40 height=40 id="trash" >
+                    </a>
+
 
                     <center>
                         <ul class="pagination">
