@@ -14,8 +14,8 @@ $page = (isset($_GET['page']) ? $_GET['page'] : 1);
 $perPage = (isset($_GET['per-page']) && ($_GET['per-page']) <= 50 ? $_GET['per-page'] : 5);
 $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 
-
-$sql = "select * from cliente ORDER BY id_Cliente DESC limit " . $start . " , " . $perPage . " ;";
+// filtro para pegar so desativados 
+$sql = "select * from cliente where desativado = 1 ORDER BY id_Cliente DESC limit " . $start . " , " . $perPage . " ;";
 $total = $dbd->query("select * from cliente")->num_rows;
 $pages = ceil($total / $perPage);
 
@@ -32,16 +32,16 @@ $rows = $dbd->query($sql);
                     <center>
                         <h1>Clientes Excluídos</h1>
                     </center>
+
                     <div class="col-md-12 text-center">
                         <?php
                         $png = 1;
                         ?>
-
-
-                        <form action="../../../search.php?id=<?php echo $png ?>" method="post" class="form-group">
+                        <form action="clientes_desativados_search.php?id=<?php echo $png ?>" method="post" class="form-group">
                             <input type="text" placeholder="Buscar" name="search" class="form-control">
                         </form>
                     </div>
+
                     <table class="table table-hover">
 
                         <thead>
@@ -58,28 +58,27 @@ $rows = $dbd->query($sql);
                         <tbody>
                             <?php while ($row = $rows->fetch_assoc()) : ?>
 
-                                <tr>
-                                    <td><input type="checkbox" value="<?php echo $row['id_Cliente'] ?>" class="marcar" name="idsClientes[]"></td>
+                                    <tr>
 
-                                    <th><?php echo $row['id_Cliente'] ?></th>
+                                        <td><input type="checkbox" value="<?php echo $row['id_Cliente'] ?>" class="marcar" name="idsClientes[]"></td>
 
-                                    <td class="col-md-10"><?php echo $row['Nome'] ?> </td>
-                                    <td class="col-md-10"><?php echo $row['Endereco'] ?> </td>
-                                    <td class="col-md-10"><?php echo $row['Cidade'] ?> </td>
-                                    <td class="col-md-10"><?php echo $row['Uf'] ?> </td>
+                                        <th><?php echo $row['id_Cliente'] ?></th>
 
-                                    <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='delete.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Deletar</a>"; ?></td>
-                                    <td><a href="editarC.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-info">Editar</a></td>
-                                    <td><a href="ListarOS.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-success">Ver OS</a></td>
+                                        <td class="col-md-10"><?php echo $row['Nome'] ?> </td>
+                                        <td class="col-md-10"><?php echo $row['Endereco'] ?> </td>
+                                        <td class="col-md-10"><?php echo $row['Cidade'] ?> </td>
+                                        <td class="col-md-10"><?php echo $row['Uf'] ?> </td>
+
+                                        <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente restaurar');\" href='../../services/restaurar_cliente.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Restaurar</a>"; ?></td>
 
 
-                                </tr>
+                                    </tr>
 
                             <?php endwhile; ?>
 
                         </tbody>
+                        
                     </table>
-
 
                     <center>
                         <ul class="pagination">
@@ -92,7 +91,9 @@ $rows = $dbd->query($sql);
                         </ul>
                     </center>
             </div>
+            
         </div>
+        <a href="../../../index.php" style="float:left;" class="btn btn-info">Voltar</a>
     </div>
 
 </body>

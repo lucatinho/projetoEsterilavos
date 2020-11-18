@@ -14,8 +14,8 @@ $page = (isset($_GET['page']) ? $_GET['page'] : 1);
 $perPage = (isset($_GET['per-page']) && ($_GET['per-page']) <= 50 ? $_GET['per-page'] : 5);
 $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 
-
-$sql = "select * from cliente ORDER BY id_Cliente DESC limit " . $start . " , " . $perPage . " ;";
+// filtro para pegar so ativos 
+$sql = "select * from cliente where desativado = 0 ORDER BY id_Cliente DESC limit " . $start . " , " . $perPage . " ;";
 $total = $dbd->query("select * from cliente")->num_rows;
 $pages = ceil($total / $perPage);
 
@@ -135,7 +135,7 @@ $rows = $dbd->query($sql);
                             function confirmacao(id) {
                                 var resposta = confirm("Deseja remover esse registro?");
                                 if (resposta == true) {
-                                    window.location.href = "delete.php?id=<?php echo $row['id_cliente']; ?>";
+                                    window.location.href = "app/services/desativa_cliente.php?id=<?php echo $row['id_cliente']; ?>";
                                 }
                             }
                         </script>
@@ -192,29 +192,27 @@ $rows = $dbd->query($sql);
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
                                     <?php while ($row = $rows->fetch_assoc()) : ?>
+                                        <tr>
+                                            <td><input type="checkbox" value="<?php echo $row['id_Cliente'] ?>" class="marcar" name="idsClientes[]"></td>
+
+                                            <th><?php echo $row['id_Cliente'] ?></th>
+
+                                            <td class="col-md-10"><?php echo $row['Nome'] ?> </td>
+                                            <td class="col-md-10"><?php echo $row['Endereco'] ?> </td>
+                                            <td class="col-md-10"><?php echo $row['Cidade'] ?> </td>
+                                            <td class="col-md-10"><?php echo $row['Uf'] ?> </td>
 
 
-                                        <td><input type="checkbox" value="<?php echo $row['id_Cliente'] ?>" class="marcar" name="idsClientes[]"></td>
 
-                                        <th><?php echo $row['id_Cliente'] ?></th>
-
-                                        <td class="col-md-10"><?php echo $row['Nome'] ?> </td>
-                                        <td class="col-md-10"><?php echo $row['Endereco'] ?> </td>
-                                        <td class="col-md-10"><?php echo $row['Cidade'] ?> </td>
-                                        <td class="col-md-10"><?php echo $row['Uf'] ?> </td>
-
-
-
-                                        <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='delete.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Deletar</a>"; ?></td>
-                                        <td><a href="editarC.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-info">Editar</a></td>
-                                        <td><a href="ListarOS.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-success">Ver OS</a></td>
+                                            <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='delete.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Apagar</a>"; ?></td>
+                                            <td><a href="editarC.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-info">Editar</a></td>
+                                            <td><a href="ListarOS.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-success">Ver OS</a></td>
 
 
 
                                 </tr>
-                            <?php endwhile; ?>
+                        <?php endwhile; ?>
 
                             </tbody>
                         </table>
