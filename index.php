@@ -121,16 +121,17 @@ $rows = $dbd->query($sql);
 
                     <!-- Modal -->
                     <div class="col-md-12 text-center">
+
                         <?php
                         $png = 1;
                         ?>
+
                         <script type="text/javascript">
                             function marcarTodos(marcardesmarcar) {
                                 $('.marcar').each(function() {
                                     this.checked = marcardesmarcar;
                                 });
                             }
-
 
                             function confirmacao(id) {
                                 var resposta = confirm("Deseja remover esse registro?");
@@ -140,79 +141,55 @@ $rows = $dbd->query($sql);
                             }
                         </script>
 
-
-
-
-
-                        </script>
-                        <!-- Button HTML (to Trigger Modal) -->
-                        <a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">PDF</a>
-                        <!-- Modal HTML -->
-                        <div id="myModal" class="modal fade">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Confirmação</h5>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h3>Digite o Email para onde a tabela será enviada!</h3>
-                                        <br>
-                                        <input type="text" class="form-control" name="username" placeholder="Email" required="required">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" style="float:left;" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <a href="gerapdf.php" class="btn btn-info">Enviar pdf para o email</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-
                         <form action="search.php?id=<?php echo $png ?>" method="post" class="form-group">
                             <input type="text" placeholder="Buscar" name="search" class="form-control">
                         </form>
                     </div>
+
                     <form action="deleteSelecionados.php" method="POST">
                         <table class="table table-hover">
-                            <input type="submit" name="btnapgselc" class="btn btn-danger" value="Deletar Selecionados"></a>
+                            <!-- <input type="submit" name="btnapgselc" class="btn btn-danger" value="Deletar Selecionados"></a> -->
                             <thead>
-
                                 <tr>
-
                                     <th><input type="checkbox" name="sn" onclick="marcarTodos(this.checked);"></th>
                                     <th>ID.</th>
                                     <th>Nome</th>
                                     <th>Endereço</th>
                                     <th>Cidade</th>
                                     <th>Uf</th>
-
-
-
                                 </tr>
                             </thead>
+
+
                             <tbody>
-                                    <?php while ($row = $rows->fetch_assoc()) : ?>
-                                        <tr>
-                                            <td><input type="checkbox" value="<?php echo $row['id_Cliente'] ?>" class="marcar" name="idsClientes[]"></td>
-
-                                            <th><?php echo $row['id_Cliente'] ?></th>
-
-                                            <td class="col-md-10"><?php echo $row['Nome'] ?> </td>
-                                            <td class="col-md-10"><?php echo $row['Endereco'] ?> </td>
-                                            <td class="col-md-10"><?php echo $row['Cidade'] ?> </td>
-                                            <td class="col-md-10"><?php echo $row['Uf'] ?> </td>
+                                <?php while ($row = $rows->fetch_assoc()) : ?>
+                                    <!-- clicar em cliente  -->
+                                    <script>
+                                        function executaAcao() {
+                                            window.location = "http://localhost/projetoEsterilavos/app/view/clientes/cliente_setores.php?id=<?= $row['id_Cliente']; ?>"";
+                                        }
+                                    </script>
+                                    <tr onclick="executaAcao()">
 
 
+                                        <td><input type="checkbox" value="<?php echo $row['id_Cliente'] ?>" class="marcar" name="idsClientes[]"></td>
 
-                                            <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='delete.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Apagar</a>"; ?></td>
-                                            <td><a href="editarC.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-info">Editar</a></td>
-                                            <td><a href="ListarOS.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-success">Ver OS</a></td>
+                                        <th><?php echo $row['id_Cliente'] ?></th>
+
+                                        <td class="col-md-10"><?php echo $row['Nome'] ?> </td>
+                                        <td class="col-md-10"><?php echo $row['Endereco'] ?> </td>
+                                        <td class="col-md-10"><?php echo $row['Cidade'] ?> </td>
+                                        <td class="col-md-10"><?php echo $row['Uf'] ?> </td>
 
 
 
-                                </tr>
-                        <?php endwhile; ?>
+                                        <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='delete.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Apagar</a>"; ?></td>
+                                        <td><a href="editarC.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-info">Editar</a></td>
+                                        <td><a href="ListarOS.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-success">Ver OS</a></td>
+
+
+                                    </tr>
+                                <?php endwhile; ?>
 
                             </tbody>
                         </table>
