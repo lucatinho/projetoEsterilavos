@@ -166,7 +166,7 @@ $rows = $dbd->query($sql);
                                     <!-- clicar em cliente  -->
                                     <script>
                                         function executaAcao() {
-                                            window.location = "http://localhost/projetoEsterilavos/app/view/clientes/cliente_setores.php?id=<?= $row['id_Cliente']; ?>"";
+                                            window.location = "http://localhost/projetoEsterilavos/app/view/clientes/cliente_setores.php?id=<?= $row['id_Cliente']; ?>";
                                         }
                                     </script>
                                     <tr onclick="executaAcao()">

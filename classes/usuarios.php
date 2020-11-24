@@ -13,13 +13,13 @@
         $msgErro - $e->getMessage(); /*pega a mensagem de erro do php e joga na variavel msegErro e mostra pro usuario.*/
       }
     }
-    public function cadastrar($nome,$Endereco,$Cidade,$Uf,$Solicitante,$Setor)
+    public function cadastrar($nome,$Endereco,$Cidade,$Uf,$Solicitante)
     {
       global $pdo;
           global $msgErro;
       
         //caso nao tenha
-        $sql = $pdo->prepare("INSERT INTO cliente (nome, Endereco, Cidade, Uf, Solicitante,Setor) VALUES (:nome, :Endereco, :Cidade, :Uf, :Solicitante, :Setor)");
+        $sql = $pdo->prepare("INSERT INTO cliente (nome, Endereco, Cidade, Uf, Solicitante) VALUES (:nome, :Endereco, :Cidade, :Uf, :Solicitante)");
 
 
      
@@ -28,7 +28,6 @@
         $sql->bindValue(":Cidade", $Cidade);
         $sql->bindValue(":Uf", $Uf);
         $sql->bindValue(":Solicitante", $Solicitante);
-        $sql->bindValue(":Setor", $Setor);
   
        
         $sql->execute();
@@ -110,13 +109,13 @@ public function upPC($id,$Nome, $NumeroS, $Tamanho, $Cor, $Marca,$Tipo)
     }
     
     
-   public function updateC( $id,$nome,$Endereco,$Cidade,$Uf,$Solicitante,$Setor)
+   public function updateC( $id,$nome,$Endereco,$Cidade,$Uf,$Solicitante)
     {
       global $pdo;
           global $msgErro;
       
         //caso nao tenha
-        $sql = $pdo->prepare("UPDATE cliente SET  Nome='$nome', Endereco='$Endereco', Cidade='$Cidade', Uf='$Uf', Solicitante='$Solicitante', Setor='$Setor' WHERE id_Cliente = '$id'");
+        $sql = $pdo->prepare("UPDATE cliente SET  Nome='$nome', Endereco='$Endereco', Cidade='$Cidade', Uf='$Uf', Solicitante='$Solicitante' WHERE id_Cliente = '$id'");
 
         $sql->execute();
         return true;

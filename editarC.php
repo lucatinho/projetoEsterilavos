@@ -150,10 +150,10 @@ $rows = $dbd->query($sqll);
           <input type="text" class="form-control" id="address2" name="Solicitante" value="<?php echo $row['Solicitante'] ?>">
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="address2">Setor<span class="text-muted"></span></label>
           <input type="text" class="form-control" id="address2" name="Setor" value="<?php echo $row['Setor'] ?>">
-        </div>
+        </div> -->
 
 
         <a href="index.php">
@@ -196,7 +196,7 @@ if (isset($_POST['nome'])) {
   $Uf = addslashes($_POST['Uf']);
   $Solicitante = addslashes($_POST['Solicitante']);
   // $Equipamento = addslashes($_POST['Equipamento']);
-  $Setor = addslashes($_POST['Setor']);
+  // $Setor = addslashes($_POST['Setor']);
 
   $id = (int)$_GET['id'];
 
@@ -204,13 +204,13 @@ if (isset($_POST['nome'])) {
   //verificando se todos os campos nao estao vazios
   if (
     !empty($nome) && !empty($Endereco) && !empty($Cidade) && !empty($Solicitante)
-    && !empty($Setor) && !empty($id)
+    && !empty($id)
   ) {
     $u->conectar("u558134221_esterilavos", "127.0.0.1:3306", "u558134221_esterilavos", "Q*sçxyym34y5$");  //Conectando ao banco de dados 
     if ($u->msgErro == "") //conectado normalmente;
     {
 
-      if ($u->updateC($id, $nome, $Endereco, $Cidade, $Uf, $Solicitante,  $Setor)) {
+      if ($u->updateC($id, $nome, $Endereco, $Cidade, $Uf, $Solicitante)) {
       } else {
         echo "Email já cadastrado";
       }
