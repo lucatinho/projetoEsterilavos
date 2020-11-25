@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Nov-2020 às 15:08
+-- Tempo de geração: 25-Nov-2020 às 15:21
 -- Versão do servidor: 10.4.14-MariaDB
 -- versão do PHP: 7.2.34
 
@@ -166,7 +166,10 @@ INSERT INTO `cliente` (`id_Cliente`, `Nome`, `Endereco`, `Cidade`, `Uf`, `Solici
 (117, 'Teste', 'teste', 'São Paulo', 'SP', 'Teste', 'Eng Clínica', b'0'),
 (118, 'carlos', 'centro', 'votu', 'SP', 'teste', 'teste', b'0'),
 (119, 'hospital santa casa', 'asdsad', 'aasdasda', 'AC', 'asdasda', 'adsasdadsasd', b'0'),
-(120, 'cliente teste', 'rua teste', 'Fortaleza', 'CE', 'gleidson', 'setor teste', b'1');
+(120, 'cliente teste', 'rua teste', 'Fortaleza', 'CE', 'gleidson', 'setor teste', b'0'),
+(121, 'teste1', 'centro', 'botu', 'GO', 'teste1', '', b'1'),
+(122, 'hospital santa casa2', 'centro', 'votu', 'AC', 'teste', '', b'1'),
+(123, 'hospital santa casa4', 'centro', 'votu', 'AC', 'teste', '', b'1');
 
 -- --------------------------------------------------------
 
@@ -275,20 +278,22 @@ CREATE TABLE `peca` (
   `Tamanho` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Cor` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Marca` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Tipo` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL
+  `Tipo` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fk_setor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `peca`
 --
 
-INSERT INTO `peca` (`id_peca`, `Nome`, `NumeroS`, `Tamanho`, `Cor`, `Marca`, `Tipo`) VALUES
-(10, 'd', 'qd', 'qwd', 'qwdq', 'wqwdqwd', 'qw'),
-(11, 'RODA', 'ASD', 'QDSQ', 'WDQ', 'WDQ', 'WQWDD'),
-(12, 'PENEU', 'SD', 'QWDQWDQWDQ', 'WD', 'QWDQWDQWD', 'QWDDDD'),
-(13, 'peça', '123213', 'p', 'green', 'marca', 'diferente'),
-(14, 'joão', '18', '2nm', 'verde', 'alguma', 'tipo'),
-(15, 'cambio', '123123123', '12', 'branco', 'chevrolet', 'peça');
+INSERT INTO `peca` (`id_peca`, `Nome`, `NumeroS`, `Tamanho`, `Cor`, `Marca`, `Tipo`, `fk_setor`) VALUES
+(10, 'd', 'qd', 'qwd', 'qwdq', 'wqwdqwd', 'qw', 1),
+(11, 'RODA', 'ASD', 'QDSQ', 'WDQ', 'WDQ', 'WQWDD', 1),
+(12, 'PENEU', 'SD', 'QWDQWDQWDQ', 'WD', 'QWDQWDQWD', 'QWDDDD', 1),
+(13, 'peça', '123213', 'p', 'green', 'marca', 'diferente', 1),
+(14, 'joão', '18', '2nm', 'verde', 'alguma', 'tipo', 1),
+(15, 'cambio', '123123123', '12', 'branco', 'chevrolet', 'peça', 1),
+(16, 'teste', '123', '123', 'branco', 'chevrolet', 'peça', 2);
 
 -- --------------------------------------------------------
 
@@ -309,6 +314,27 @@ CREATE TABLE `pecac` (
 
 INSERT INTO `pecac` (`id`, `Nome`, `qtd`, `order_id`) VALUES
 (1, 'gdfgds', '445', '54');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `setores`
+--
+
+CREATE TABLE `setores` (
+  `id_setor` int(11) NOT NULL,
+  `nomeSetor` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `setores`
+--
+
+INSERT INTO `setores` (`id_setor`, `nomeSetor`) VALUES
+(1, 'CME'),
+(3, 'LABORATÓRIO'),
+(2, 'LACTÁRIO'),
+(4, 'OUTROS');
 
 -- --------------------------------------------------------
 
@@ -456,13 +482,20 @@ ALTER TABLE `os`
 -- Índices para tabela `peca`
 --
 ALTER TABLE `peca`
-  ADD PRIMARY KEY (`id_peca`);
+  ADD KEY `fk_setor` (`fk_setor`);
 
 --
 -- Índices para tabela `pecac`
 --
 ALTER TABLE `pecac`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `setores`
+--
+ALTER TABLE `setores`
+  ADD PRIMARY KEY (`id_setor`),
+  ADD UNIQUE KEY `nomeSetor` (`nomeSetor`);
 
 --
 -- Índices para tabela `tbl_order_items`
@@ -496,7 +529,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_Cliente` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id_Cliente` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT de tabela `img`
@@ -515,12 +548,6 @@ ALTER TABLE `item`
 --
 ALTER TABLE `os`
   MODIFY `idOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
-
---
--- AUTO_INCREMENT de tabela `peca`
---
-ALTER TABLE `peca`
-  MODIFY `id_peca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `pecac`
@@ -551,6 +578,16 @@ ALTER TABLE `tecnico`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `peca`
+--
+ALTER TABLE `peca`
+  ADD CONSTRAINT `peca_ibfk_1` FOREIGN KEY (`fk_setor`) REFERENCES `setores` (`id_setor`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

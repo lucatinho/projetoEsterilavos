@@ -21,7 +21,7 @@ $sqll = "select * from cliente where id_Cliente = $id ";
 $sqlClientes = $dbd->query($sqll);
 
 // pegar setores 
-$sql = "select * from setores ORDER BY idSetor ASC limit " . $start . " , " . $perPage . " ;";
+$sql = "select * from setores ORDER BY id_setor ASC limit " . $start . " , " . $perPage . " ;";
 $total = $dbd->query("select * from setores")->num_rows;
 $pages = ceil($total / $perPage);
 
@@ -54,16 +54,16 @@ $rows = $dbd->query($sql);
                         <?php $sqlCliente = $sqlClientes->fetch_assoc() ?>
                             <?php while ($row = $rows->fetch_assoc()) : ?>
                                 <tr>
-                                    <td><input type="checkbox" value="<?php echo $row['idSetor'] ?>" class="marcar" name="idsClientes[]"></td>
+                                    <td><input type="checkbox" value="<?php echo $row['id_setor'] ?>" class="marcar" name="idsClientes[]"></td>
 
-                                    <th><?php echo $row['idSetor'] ?></th>
+                                    <th><?php echo $row['id_setor'] ?></th>
 
                                     <td class="col-md-10"><?php echo $row['nomeSetor'] ?> </td>
 
-                                    <td><a href="editarC.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-info">Equipamentos</a></td>
+                                    <td><a href="../equipamentos/equipamento_por_setor.php?cliente=<?= $sqlCliente['id_Cliente']; ?>&setor=<?= $row['id_setor']; ?>" class="btn btn-info">Equipamentos</a></td>
                                     
-                                    <td><a href="../../../CadastrarNOS.php?cliente=<?= $sqlCliente['id_Cliente']; ?>?setor=<?= $row['idSetor']; ?>" 
-                                    class="btn btn-success">Criar OS</a></td>
+                                    <td><a href="../../../CadastrarNOS.php?cliente=<?= $sqlCliente['id_Cliente']; ?>&setor=<?= $row['id_setor']; ?>" 
+                                    class="btn btn-success">Enviar OS</a></td>
                                 </tr>
 
                             <?php endwhile; ?>

@@ -13,12 +13,13 @@ $u = new Usuario;
 $id = (int)$_GET['cliente'];
 $connection = mysqli_connect("127.0.0.1:3306", "u558134221_esterilavos", "Q*sçxyym34y5$");
 $db = mysqli_select_db($connection, 'u558134221_esterilavos');
+
 $sql = "SELECT Nome FROM cliente WHERE id_Cliente = $id";
 $resultado = mysqli_query($connection, $sql);
 $dados = mysqli_fetch_assoc($resultado);
 $NomeC = $dados['Nome'];
 
-$sqll = "select * from peca ORDER BY id_peca  ;";
+$sqll = "SELECT * FROM peca ORDER BY id_peca  ;";
 $rows = $dbd->query($sqll);
 
 
@@ -319,7 +320,7 @@ function fill_unit_select_box($connect)
         <hr>
         <input type="submit" value="Salvar" style="float:right;" class="btn btn-success" class="entrar">
 
-        <a href="ListarOS.php?id=<?echo $id?>" style="float:center;" class="btn btn-info">Voltar</a>
+        <a href="app/view/setores/lista_setores.php?id=<?= $id ?>" style="float:center;" class="btn btn-info">Voltar</a>
 
       </div>
     </div>

@@ -166,13 +166,12 @@ $rows = $dbd->query($sql);
                                 <?php while ($row = $rows->fetch_assoc()) : ?>
                                     <!-- clicar em cliente  -->
                                     <script>
-                                        function executaAcao() {
-                                            window.location = "http://localhost/projetoEsterilavos/app/view/clientes/cliente_setores.php?id=<?= $row['id_Cliente']; ?>";
+                                        function executaAcao(idCliente) {
+                                            window.location = "http://localhost/projetoEsterilavos/app/view/setores/lista_setores.php?id="+idCliente;
                                         }
                                     </script>
 
-                                    <tr onclick="executaAcao()">
-
+                                    <tr onclick="executaAcao(<?= $row['id_Cliente']; ?>)">
 
                                         <td><input type="checkbox" value="<?php echo $row['id_Cliente'] ?>" class="marcar" name="idsClientes[]"></td>
 
@@ -185,7 +184,6 @@ $rows = $dbd->query($sql);
 
                                         <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='delete.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Apagar</a>"; ?></td>
                                         <td><a href="editarC.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-info">Editar</a></td>
-
 
                                     </tr>
                                 <?php endwhile; ?>
