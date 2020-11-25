@@ -106,14 +106,15 @@ $rows = $dbd->query($sql);
 </head>
 
 <body class="bg-light">
-
     <div class="container">
-        <center>
-            <h1>Clientes</h1>
-        </center>
-
-        <div class="row" style="margin-top: 10px;">
+        <div class="row" style="margin-top: 80px;">
             <div class="col-md-10 col-md-offset-1">
+
+                <center>
+                    <h1>Clientes</h1>
+                </center>
+
+
                 <table class="table">
                     <a style="float:left; margin-top:20px;" class="btn btn-info" href="cadastrar.php"> Cadastrar Cliente</a>
                     <br><br>
@@ -169,6 +170,7 @@ $rows = $dbd->query($sql);
                                             window.location = "http://localhost/projetoEsterilavos/app/view/clientes/cliente_setores.php?id=<?= $row['id_Cliente']; ?>";
                                         }
                                     </script>
+
                                     <tr onclick="executaAcao()">
 
 
@@ -181,11 +183,8 @@ $rows = $dbd->query($sql);
                                         <td class="col-md-10"><?php echo $row['Cidade'] ?> </td>
                                         <td class="col-md-10"><?php echo $row['Uf'] ?> </td>
 
-
-
                                         <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='delete.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Apagar</a>"; ?></td>
                                         <td><a href="editarC.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-info">Editar</a></td>
-                                        <td><a href="ListarOS.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-success">Ver OS</a></td>
 
 
                                     </tr>
@@ -207,7 +206,6 @@ $rows = $dbd->query($sql);
                         <img src="imgs/trash.png" width=40 height=40 id="trash">
                     </a>
 
-
                     <center>
                         <ul class="pagination">
                             <?php for ($i = 1; $i <= $pages; $i++) : ?>
@@ -218,8 +216,6 @@ $rows = $dbd->query($sql);
                             <?php endfor; ?>
                         </ul>
                     </center>
-
-                    <center>
 
             </div>
         </div>

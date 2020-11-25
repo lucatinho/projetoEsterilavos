@@ -62,8 +62,7 @@ $rows = $dbd->query($sql);
 
                                     <td><a href="editarC.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-info">Equipamentos</a></td>
                                     
-                                    <td><a href="../../../CadastrarNOS.php?cliente=
-                                    <?= $sqlCliente['id_Cliente']; ?>" 
+                                    <td><a href="../../../CadastrarNOS.php?cliente=<?= $sqlCliente['id_Cliente']; ?>?setor=<?= $row['idSetor']; ?>" 
                                     class="btn btn-success">Criar OS</a></td>
                                 </tr>
 
