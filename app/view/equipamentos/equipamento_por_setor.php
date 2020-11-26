@@ -79,9 +79,9 @@ $NomeC = $dados['nomeSetor'];
                                     <td class="col-md-10"><?php echo $row['Cor'] ?> </td>
 
 
-                                    <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='PCdelete.php?id=" . $row['id_peca'] . "' class='btn btn-danger'>Deletar</a>"; ?></td>
+                                    <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='equipamento_deletar.php?id=" . $row['id_peca'] . "&idsetor=". $id . "&idcliente=" . $idCliente . "' class='btn btn-danger'>Apagar</a>"; ?></td>
 
-                                    <td><a href="Peditar.php?id=<?= $row['id_peca']; ?>" class="btn btn-info">Editar</a></td>
+                                    <td><a href="equipamento_editar.php?idequipamento=<?= $row['id_peca']; ?>&idsetor=<?php echo $id; ?>&idcliente=<?php echo $idCliente; ?>" class="btn btn-info">Editar</a></td>
                                 </tr>
 
                             <?php endwhile; ?>

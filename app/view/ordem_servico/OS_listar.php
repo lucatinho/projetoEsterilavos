@@ -15,8 +15,10 @@ $perPage = (isset($_GET['per-page']) && ($_GET['per-page']) <= 50 ? $_GET['per-p
 $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 
 // pegar id do cliente da url
-$id = (int)$_GET['id'];
-$sqll = "select * from cliente where id_Cliente = $id ";
+$idcliente = (int)$_GET['cliente'];
+$idsetor = (int)$_GET['setor'];
+
+$sqll = "select * from cliente where id_Cliente = $idcliente ";
 
 $sqlClientes = $dbd->query($sqll);
 
@@ -53,16 +55,8 @@ $rows = $dbd->query($sql);
                         <tbody>
                             <?php $sqlCliente = $sqlClientes->fetch_assoc() ?>
                             <?php while ($row = $rows->fetch_assoc()) : ?>
-
-                                <!-- clicar em cliente  -->
-                                <script>
-                                    function executaAcao(idCliente) {
-                                        window.location = "http://localhost/projetoEsterilavos/app/view/ordem_servico/OS_listar.php?cliente=" + idCliente;
-                                    }
-                                </script>
-
-                                <tr onclick="executaAcao(<?= $sqlCliente['id_Cliente']; ?> + '&setor=' + <?= $row['id_setor']?>)">
-
+                                
+                                <tr>
                                     <td><input type="checkbox" value="<?php echo $row['id_setor'] ?>" class="marcar" name="idsClientes[]"></td>
 
                                     <th><?php echo $row['id_setor'] ?></th>
@@ -72,7 +66,6 @@ $rows = $dbd->query($sql);
                                     <td><a href="../equipamentos/equipamento_por_setor.php?cliente=<?= $sqlCliente['id_Cliente']; ?>&setor=<?= $row['id_setor']; ?>" class="btn btn-info">Equipamentos</a></td>
 
                                     <td><a href="../../../CadastrarNOS.php?cliente=<?= $sqlCliente['id_Cliente']; ?>&setor=<?= $row['id_setor']; ?>" class="btn btn-success">Enviar OS</a></td>
-
                                 </tr>
 
                             <?php endwhile; ?>
@@ -85,7 +78,7 @@ $rows = $dbd->query($sql);
             </div>
 
         </div>
-        <a href="../../../index.php" style="float:left;" class="btn btn-info">Voltar</a>
+        <a href="../setores/lista_setores.php?id=<?php echo $idcliente; ?>" style="float:left;" class="btn btn-info">Voltar</a>
     </div>
 
 </body>

@@ -16,6 +16,8 @@ if (isset($_POST['search'])) {
     $sql = "select * from peca where Nome like '%$name%' ";
     $rows = $dbd->query($sql);
 }
+$id = (int)$_GET['setor'];
+$idCliente = (int)$_GET['cliente'];
 ?>
 <?php include '../header/header_nav.php'; ?>
 
@@ -87,7 +89,7 @@ if (isset($_POST['search'])) {
 
                         <h2 class="text-danger text-center">
                             Nada encontrado</h2>
-                        <a href="Lpeca.php" class="btn btn-warning">Voltar</a>
+                        <a href="equipamento_por_setor.php?id=<?= $idCliente ?>" style="float:left;" class="btn btn-info">Voltar</a>
 
 
                     <?php else : ?>
@@ -118,9 +120,9 @@ if (isset($_POST['search'])) {
                                         <td class="col-md-10"><?php echo $row['Cor'] ?> </td>
 
 
-                                        <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='PCdelete.php?id=" . $row['id_peca'] . "' class='btn btn-danger'>Deletar</a>"; ?></td>
+                                        <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='equipamento_deletar.php?id=" . $row['id_peca'] . "&idsetor=". $id . "&idcliente=" . $idCliente . "' class='btn btn-danger'>Apagar</a>"; ?></td>
 
-                                        <td><a href="Peditar.php?id=<?= $row['id_peca']; ?>" class="btn btn-info">Editar</a></td>
+<td><a href="equipamento_editar.php?idequipamento=<?= $row['id_peca']; ?>&idsetor=<?php echo $id; ?>&idcliente=<?php echo $idCliente; ?>" class="btn btn-info">Editar</a></td>
                                     </tr>
 
                                 <?php endwhile; ?>
@@ -132,7 +134,7 @@ if (isset($_POST['search'])) {
 
             </div>
         </div>
-        <a href="equipamento_por_setor.php?id=<?= $idCliente ?>" style="float:left;" class="btn btn-info">Voltar</a>
+        <a href="equipamento_por_setor.php?cliente=<?= $idCliente ?>&setor=<?= $id?>" style="float:left;" class="btn btn-info">Voltar</a>
     </div>
 </body>
 <?php include '../footer/footer.php'; ?>
