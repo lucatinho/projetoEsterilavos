@@ -37,7 +37,8 @@
     }
 
 
-     public function cadastrarOS( $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs,$novo_nome,$TOS,$mes,$anos)
+    //  public function cadastrarOS( $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs,$novo_nome,$TOS,$mes,$anos)
+    public function cadastrarOS( $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs,$TOS,$mes,$anos)
     {
       global $pdo;
           global $msgErro;
@@ -52,7 +53,7 @@
         $sql->bindValue(":AnoFabrica", $AnoFabrica);
         $sql->bindValue(":Npt", $Npt);
         $sql->bindValue(":obs", $obs);
-         $sql->bindValue(":nome", $novo_nome);
+        //  $sql->bindValue(":nome", $novo_nome);
         $sql->bindValue(":ano", $anos);
         $sql->bindValue(":mes", $mes);
         $sql->bindValue(":tipo", $TOS);

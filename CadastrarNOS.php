@@ -336,7 +336,7 @@ function fill_unit_select_box($connect)
           <input type="text" class="form-control" name="Npt">
         </div>
 
-        
+
 
         <div class="mb-3">
           <label for="address2">Observações<span class="text-muted"></span></label>
@@ -427,6 +427,16 @@ function fill_unit_select_box($connect)
   });
 </script>
 
+<div class="mt-5 pt-2 pb-1 footer">
+  <div class="about-company">
+    <p style="text-align:center; font-size:12px;" class="text-white-50">ESTERILAV COM. E MANUT. DE EQUIP. HOSP. LTDA-EPP | CNPJ nº
+      52.119.963/0001-02 </p>
+    <p style="text-align:center; font-size:12px;" class="text-white-50"><small>Copyright © Esterilav. (Lei 9610 de 19/02/1998)</small></p>
+  </div>
+</div>
+
+</html>
+
 <?php
 
 if (isset($_FILES['arquivo'])) {
@@ -440,7 +450,7 @@ if (isset($_FILES['arquivo'])) {
   $AnoFabrica = addslashes($_POST['AnoFabrica']);
   $Npt = addslashes($_POST['Npt']);
   $obs = addslashes($_POST['obs']);
-  $idos = (int)$_GET['id'];
+  $idos = (int)$_GET['cliente'];
 
 
   $msg = false;
@@ -466,25 +476,15 @@ if (isset($_FILES['arquivo'])) {
     if ($u->msgErro == "") //conectado normalmente;
     {
 
-      if ($u->cadastrarOS($idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs, $novo_nome, $TOS, $mes, $anos)) {
+      // if ($u->cadastrarOS($idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs, $novo_nome, $TOS, $mes, $anos)) {
+      if ($u->cadastrarOS($idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs, $TOS, $mes, $anos)) {
       }
+    } else {
+      echo "Erro: " . $u->msgErro;
     }
   } else {
-    echo "Erro: " . $u->msgErro;
+    echo "Preencha todos os campos!";
   }
-} else {
-  echo "Preencha todos os campos!";
 }
 
-
 ?>
-
-<div class="mt-5 pt-2 pb-1 footer">
-  <div class="about-company">
-    <p style="text-align:center; font-size:12px;" class="text-white-50">ESTERILAV COM. E MANUT. DE EQUIP. HOSP. LTDA-EPP | CNPJ nº
-      52.119.963/0001-02 </p>
-    <p style="text-align:center; font-size:12px;" class="text-white-50"><small>Copyright © Esterilav. (Lei 9610 de 19/02/1998)</small></p>
-  </div>
-</div>
-
-</html>

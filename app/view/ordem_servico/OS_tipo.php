@@ -56,7 +56,7 @@ $rows = $dbd->query($sql);
                     <?php endwhile; ?>
 
                     <center>
-                        <h1>Tipos de OS</h1>
+                        <h1>O que quer fazer ?</h1>
                     </center>
 
 
