@@ -15,39 +15,39 @@ $page = (isset($_GET['page']) ? $_GET['page'] : 1);
 $perPage = (isset($_GET['per-page']) && ($_GET['per-page']) <= 50 ? $_GET['per-page'] : 5);
 $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 
-$id = (int)$_GET['setor'];
+$idsetor = (int)$_GET['setor'];
 $idCliente = (int)$_GET['cliente'];
 
-$sql = "SELECT * FROM peca WHERE fk_setor = $id ORDER BY id_peca DESC limit " . $start . " , " . $perPage . " ;";
+$sql = "SELECT * FROM peca WHERE fk_setor = $idsetor ORDER BY id_peca DESC limit " . $start . " , " . $perPage . " ;";
 $total = $dbd->query("select * from peca")->num_rows;
 $pages = ceil($total / $perPage);
 $rows = $dbd->query($sql);
-
-
-$sqll = "SELECT nomeSetor FROM setores WHERE id_setor = $id";
-// $NomeC = $dbd->query($sqll);
-$resultado = mysqli_query($connection, $sqll);
-$dados = mysqli_fetch_assoc($resultado);
-$NomeC = $dados['nomeSetor'];
+// pegar nome setor
+$sql2 = "select * from setores where id_setor = $idsetor ";
+$sqlSetor = $dbd->query($sql2);
 
 ?>
 
 </head>
+
 <body>
     <div class="container">
         <div class="row" style="margin-top: 80px;">
 
             <div class="col-md-10 col-md-offset-1">
                 <table class="table">
+
                     <center>
-                        <h1>Equipamentos do setor <?php echo $id ?></h1>
+                        <?php while ($row = $sqlSetor->fetch_assoc()) : ?>
+                            <h1>Equipamentos do setor <?= $row['nomeSetor'] ?></h1>
+                        <?php endwhile; ?>
                     </center>
 
                     <div class="col-md-12 text-center">
                         <?php
                         $png = 1;
                         ?>
-                        <form action="equipamento_por_setor_search.php?cliente=<?php echo $idCliente ?>&setor=<?php echo $id ?>" method="post" class="form-group">
+                        <form action="equipamento_por_setor_search.php?cliente=<?php echo $idCliente ?>&setor=<?php echo $idsetor ?>" method="post" class="form-group">
                             <input type="text" placeholder="Buscar" name="search" class="form-control">
                         </form>
                     </div>
@@ -67,11 +67,16 @@ $NomeC = $dados['nomeSetor'];
 
                         <tbody>
                             <?php while ($row = $rows->fetch_assoc()) : ?>
+                                <!-- clicar em cliente  -->
+                                <script>
+                                    function executaAcao(idCliente) {
+                                        window.location = "http://localhost/projetoEsterilavos/app/view/ordem_servico/OS_tipo.php?cliente=" + idCliente;
+                                    }
+                                </script>
 
-                                <tr>
+                                <tr onclick="executaAcao(<?php echo $idCliente; ?> + '&setor=' + <?php echo $idsetor; ?> + '&equipamento=' + <?= $row['id_peca'] ?>)">
 
                                     <td><input type="checkbox" value="<?php echo $row['id_peca'] ?>" class="marcar" name="ids_peca[]"></td>
-
                                     <th><?php echo $row['id_peca'] ?></th>
                                     <td class="col-md-10"><?php echo $row['Nome'] ?> </td>
                                     <td class="col-md-10"><?php echo $row['NumeroS'] ?> </td>
@@ -79,9 +84,9 @@ $NomeC = $dados['nomeSetor'];
                                     <td class="col-md-10"><?php echo $row['Cor'] ?> </td>
 
 
-                                    <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='equipamento_deletar.php?id=" . $row['id_peca'] . "&idsetor=". $id . "&idcliente=" . $idCliente . "' class='btn btn-danger'>Apagar</a>"; ?></td>
+                                    <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='equipamento_deletar.php?id=" . $row['id_peca'] . "&idsetor=" . $idsetor . "&idcliente=" . $idCliente . "' class='btn btn-danger'>Apagar</a>"; ?></td>
 
-                                    <td><a href="equipamento_editar.php?idequipamento=<?= $row['id_peca']; ?>&idsetor=<?php echo $id; ?>&idcliente=<?php echo $idCliente; ?>" class="btn btn-info">Editar</a></td>
+                                    <td><a href="equipamento_editar.php?idequipamento=<?= $row['id_peca']; ?>&idsetor=<?php echo $idsetor; ?>&idcliente=<?php echo $idCliente; ?>" class="btn btn-info">Editar</a></td>
                                 </tr>
 
                             <?php endwhile; ?>
@@ -95,7 +100,7 @@ $NomeC = $dados['nomeSetor'];
                             <?php for ($i = 1; $i <= $pages; $i++) : ?>
 
 
-                                <li><a href="?page=<?php echo $i; ?>&per-page=<?php echo $perPage; ?>&cliente=<?php echo $idCliente; ?>&setor=<?php echo $id; ?>"><?php echo $i; ?></a></li>
+                                <li><a href="?page=<?php echo $i; ?>&per-page=<?php echo $perPage; ?>&cliente=<?php echo $idCliente; ?>&setor=<?php echo $idsetor; ?>"><?php echo $i; ?></a></li>
 
                             <?php endfor; ?>
                         </ul>

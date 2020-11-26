@@ -6,32 +6,18 @@ if (!empty($_SESSION['id'])) {
   header("Location: login.php");
   exit;
 }
-include_once "conexao.php";
-require_once 'classes/usuarios.php';
-include 'db.php';
+include_once "../../../conexao.php";
+require_once '../../../classes/usuarios.php';
+include '../../../db.php';
 $u = new Usuario;
-// pegar da url valores
 $id = (int)$_GET['cliente'];
-$idsetor = (int)$_GET['setor'];
-$idequipamento = (int)$_GET['equipamento'];
-
 $connection = mysqli_connect("127.0.0.1:3306", "u558134221_esterilavos", "Q*sçxyym34y5$");
 $db = mysqli_select_db($connection, 'u558134221_esterilavos');
-// pegar nome cliente
+
 $sql = "SELECT Nome FROM cliente WHERE id_Cliente = $id";
 $resultado = mysqli_query($connection, $sql);
 $dados = mysqli_fetch_assoc($resultado);
 $NomeC = $dados['Nome'];
-// pegar nome setor
-$sql2 = "SELECT nomeSetor FROM setores WHERE id_setor = $idsetor";
-$resultado2 = mysqli_query($connection, $sql2);
-$dados2 = mysqli_fetch_assoc($resultado2);
-$NomeSetor = $dados2['nomeSetor'];
-// pegar nome equipamento
-$sql3 = "SELECT Nome FROM peca WHERE id_peca = $idequipamento";
-$resultado = mysqli_query($connection, $sql3);
-$dados = mysqli_fetch_assoc($resultado);
-$NomeEquipamento = $dados['Nome'];
 
 $sqll = "SELECT * FROM peca ORDER BY id_peca  ;";
 $rows = $dbd->query($sqll);
@@ -166,31 +152,16 @@ function fill_unit_select_box($connect)
 
         </h4>
         <ul class="list-group mb-3">
-          <!-- cliente -->
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
               <h6 class="my-0">Cliente : <?php echo $NomeC ?></h6>
             </div>
             <span class="text-muted">ID:<?php echo $id; ?></span>
           </li>
-          <!-- setor -->
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Setor : <?php echo $NomeSetor ?></h6>
-            </div>
-            <span class="text-muted">ID:<?php echo $idsetor; ?></span>
-          </li>
-          <!-- equipamento -->
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Equipamento : <?php echo $NomeEquipamento ?></h6>
-            </div>
-            <span class="text-muted">ID:<?php echo $idequipamento; ?></span>
-          </li>
-
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
               <img class="d-block mx-auto mb-4" src="<?php echo $aux; ?>" alt=""> </div>
+
 
           </li>
         </ul>
@@ -287,15 +258,12 @@ function fill_unit_select_box($connect)
             </select>
           </div>
 
-          <div class="col-md-2 mb-3">
-            <label for="exampleFormControlSelect1">Tipo OS</label>
-            <select class="form-control" name="ano">
-              <option value="t01">2020</option>
-              <option value="t02">2021</option>
-              <option value="t03">2022</option>
-            </select>
-          </div>
 
+          <div class="col-md-2 mb-3">
+            <label for="exampleFormControlSelect1">ANO</label>
+            <input type="text" maxlength="4" name="ano" class="form-control">
+
+          </div>
         </div>
 
         <div class="mb-3">
@@ -334,9 +302,8 @@ function fill_unit_select_box($connect)
         <div class="mb-3">
           <label for="address">NºPART</label>
           <input type="text" class="form-control" name="Npt">
-        </div>
 
-        
+        </div>
 
         <div class="mb-3">
           <label for="address2">Observações<span class="text-muted"></span></label>

@@ -61,7 +61,7 @@ $rows = $dbd->query($sql);
                                     }
                                 </script>
 
-                                <tr onclick="executaAcao(<?= $sqlCliente['id_Cliente']; ?> + '&setor=' + <?= $row['id_setor']?>)">
+                                <tr>
 
                                     <td><input type="checkbox" value="<?php echo $row['id_setor'] ?>" class="marcar" name="idsClientes[]"></td>
 
@@ -71,7 +71,7 @@ $rows = $dbd->query($sql);
 
                                     <td><a href="../equipamentos/equipamento_por_setor.php?cliente=<?= $sqlCliente['id_Cliente']; ?>&setor=<?= $row['id_setor']; ?>" class="btn btn-info">Equipamentos</a></td>
 
-                                    <td><a href="../../../CadastrarNOS.php?cliente=<?= $sqlCliente['id_Cliente']; ?>&setor=<?= $row['id_setor']; ?>" class="btn btn-success">Enviar OS</a></td>
+                                    <td><a href="../ordem_servico/enviar_os/OS_data.php?cliente=<?= $sqlCliente['id_Cliente']; ?>&setor=<?= $row['id_setor']; ?>" class="btn btn-success">Enviar OS</a></td>
 
                                 </tr>
 

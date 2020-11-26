@@ -150,10 +150,7 @@ $rows = $dbd->query($sqll);
           <input type="text" class="form-control" id="address2" name="Solicitante" value="<?php echo $row['Solicitante'] ?>">
         </div>
 
-        <!-- <div class="mb-3">
-          <label for="address2">Setor<span class="text-muted"></span></label>
-          <input type="text" class="form-control" id="address2" name="Setor" value="<?php echo $row['Setor'] ?>">
-        </div> -->
+        
 
 
         <a href="index.php">

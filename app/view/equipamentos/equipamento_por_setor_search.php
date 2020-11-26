@@ -108,8 +108,15 @@ $idCliente = (int)$_GET['cliente'];
 
                             <tbody>
                                 <?php while ($row = $rows->fetch_assoc()) : ?>
+                                    <!-- clicar em cliente  -->
+                                    <script>
+                                        function executaAcao(idCliente) {
+                                            window.location = "http://localhost/projetoEsterilavos/app/view/ordem_servico/OS_tipo.php?cliente=" + idCliente;
+                                        }
+                                    </script>
 
-                                    <tr>
+                                    <tr onclick="executaAcao(<?php echo $idCliente; ?> + '&setor=' + <?php echo $id; ?> + '&equipamento=' + <?= $row['id_peca'] ?>)">
+
 
                                         <td><input type="checkbox" value="<?php echo $row['id_peca'] ?>" class="marcar" name="ids_peca[]"></td>
 
@@ -120,9 +127,9 @@ $idCliente = (int)$_GET['cliente'];
                                         <td class="col-md-10"><?php echo $row['Cor'] ?> </td>
 
 
-                                        <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='equipamento_deletar.php?id=" . $row['id_peca'] . "&idsetor=". $id . "&idcliente=" . $idCliente . "' class='btn btn-danger'>Apagar</a>"; ?></td>
+                                        <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='equipamento_deletar.php?id=" . $row['id_peca'] . "&idsetor=" . $id . "&idcliente=" . $idCliente . "' class='btn btn-danger'>Apagar</a>"; ?></td>
 
-<td><a href="equipamento_editar.php?idequipamento=<?= $row['id_peca']; ?>&idsetor=<?php echo $id; ?>&idcliente=<?php echo $idCliente; ?>" class="btn btn-info">Editar</a></td>
+                                        <td><a href="equipamento_editar.php?idequipamento=<?= $row['id_peca']; ?>&idsetor=<?php echo $id; ?>&idcliente=<?php echo $idCliente; ?>" class="btn btn-info">Editar</a></td>
                                     </tr>
 
                                 <?php endwhile; ?>
@@ -134,7 +141,7 @@ $idCliente = (int)$_GET['cliente'];
 
             </div>
         </div>
-        <a href="equipamento_por_setor.php?cliente=<?= $idCliente ?>&setor=<?= $id?>" style="float:left;" class="btn btn-info">Voltar</a>
+        <a href="equipamento_por_setor.php?cliente=<?= $idCliente ?>&setor=<?= $id ?>" style="float:left;" class="btn btn-info">Voltar</a>
     </div>
 </body>
 <?php include '../footer/footer.php'; ?>
