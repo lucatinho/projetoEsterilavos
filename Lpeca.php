@@ -119,12 +119,13 @@ $rows = $dbd->query($sql);
 
 <body>
 	<div class="container">
+	<div class="row" style="margin-top: 80px;">
+			<div class="col-md-10 col-md-offset-1">
 		<center>
 			<h1>Peças</h1>
 		</center>
 
-		<div class="row" style="margin-top: 10px;">
-			<div class="col-md-10 col-md-offset-1">
+		
 				<table class="table">
 					<a style="float:left; margin-top:20px;" class="btn btn-info" href="Cpeca.php">Cadastrar Peças</a>
 					<br><br>
@@ -170,7 +171,7 @@ $rows = $dbd->query($sql);
 
 					<form action="deleteSelecionadosPeca.php" method="POST">
 
-						<input type="submit" name="btnPeca" class="btn btn-danger" value="Deletar Selecionados"></a>
+						<!-- <input type="submit" name="btnPeca" class="btn btn-danger" value="Deletar Selecionados"></a> -->
 						</tr>
 						<table class="table table-hover">
 

@@ -42,4 +42,14 @@ OBS: essa versao do banco só funciona na versao mais recente disponivel do XAMP
 
 ------------------------------------------------------------------------
 
-Após isso seu projeto deve abrir normalmente, qualquer duvida entrar em contato.
+Após isso seu projeto deve abrir normalmente.
+
+Login do sistema:
+
+Username: usuario
+Password: 123
+Clique em acessar.
+
+------------------------------------------------------------------------
+
+Qualquer duvida entrar em contato.

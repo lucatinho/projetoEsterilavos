@@ -74,7 +74,7 @@ $rows = $dbd->query($sql);
                     <li><a href="Lfun.php">Cadastrados</a></li>
                 </ul>
             </li>
-            <li><a href="#">Sair</a></li>
+            <li><a href="sair.php">Sair</a></li>
         </ul>
     </nav>
 

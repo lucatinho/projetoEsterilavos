@@ -10,19 +10,19 @@ if (!empty($_SESSION['id'])) {
 }
 include '../../../../db.php';
 
-$page = (isset($_GET['page']) ? $_GET['page'] : 1);
-$perPage = (isset($_GET['per-page']) && ($_GET['per-page']) <= 50 ? $_GET['per-page'] : 5);
-$start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
+// $page = (isset($_GET['page']) ? $_GET['page'] : 1);
+// $perPage = (isset($_GET['per-page']) && ($_GET['per-page']) <= 50 ? $_GET['per-page'] : 5);
+// $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 
 $idcliente = (int)$_GET['cliente'];
 $idsetor = (int)$_GET['setor'];
 $ano = (int)$_GET['ano'];
 $mes = (int)$_GET['mes'];
 
-$sql = "select * from os where id_OsCliente = $idcliente AND ANO = $ano AND MES = $mes ORDER BY id_OsCliente DESC limit " . $start . " , " . $perPage . " ;";
-// $sql = "select * from os where id_OsCliente = $idcliente AND ANO = $ano AND MES = $mes ORDER BY id_OsCliente DESC limit ";
+// $sql = "select * from os where id_OsCliente = $idcliente AND ANO = $ano AND MES = $mes ORDER BY id_OsCliente DESC limit " . $start . " , " . $perPage . " ;";
+$sql = "select * from os where id_OsCliente = $idcliente AND ANO = $ano AND MES = $mes ORDER BY id_OsCliente DESC";
 $total = $dbd->query("select * from os")->num_rows;
-$pages = ceil($total / $perPage);
+// $pages = ceil($total / $perPage);
 $rows = $dbd->query($sql);
 
 $connection = mysqli_connect("127.0.0.1:3306", "u558134221_esterilavos", "Q*sçxyym34y5$");
@@ -137,6 +137,5 @@ $nomeSetor = $dados['nomeSetor'];
         }
     </script>
 </body>
+</html>
 
-
-<?php include '../../footer/footer.php'; ?>
