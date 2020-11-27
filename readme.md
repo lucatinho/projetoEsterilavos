@@ -33,6 +33,7 @@ Colocar no Nome da base de dados -> u558134221_esterilavos
 Apos criado selecione a base de dados e clique em importar na aba superior da pagina, escolha o arquivo a ser importado (u558134221_esterilavos(1)) atravez do botao escolher arquivo,
 após isso clique em executar
 OBS: essa versao do banco só funciona na versao mais recente disponivel do XAMPP.
+
 ------------------------------------------------------------------------
 
 Após isso seu projeto deve abrir normalmente, qualquer duvida entrar em contato.
