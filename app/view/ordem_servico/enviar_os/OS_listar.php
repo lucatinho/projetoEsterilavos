@@ -127,6 +127,7 @@ $nomeSetor = $dados['nomeSetor'];
                 </table>
             </div>
         </div>
+        <a href="OS_data.php?cliente=<?php echo $idcliente ?>&setor=<?php echo $idsetor?>" style="float:left;" class="btn btn-info">Voltar</a>
     </div>
     <script type="text/javascript">
         function enviar(nome) {
