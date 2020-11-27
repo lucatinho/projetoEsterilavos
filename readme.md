@@ -22,7 +22,7 @@ Segue o passo a passo de como configurar
 
 Entrar no xampp -> contas de utilizador -> Adicionar conta de utilizador -> 
 
-Nome de utilizador -> "u558134221_esterilavos
+Nome de utilizador -> u558134221_esterilavos
 Nome do Host -> %
 Palavra-passe ->Q*sçxyym34y5$ 
 ->
