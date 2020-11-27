@@ -13,7 +13,7 @@ include_once "conexao.php";
 require_once 'classes/usuarios.php';
 include 'db.php'; 
 $u = new Usuario;
-$id = (int)$_GET['id'];
+$id = (int)$_GET['equipamento'];
 
 $sqll = "select * from peca where id_peca = $id ";
 $rows = $dbd->query($sqll);

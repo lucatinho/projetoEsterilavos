@@ -77,7 +77,7 @@ $rows = $dbd->query($sql);
                                 <th>1</th>
                                 <td class="col-md-10">Dados do equipamento</td>
 
-                                <td><a href="../../../CadastrarNOS.php?cliente=<?= $sqlCliente['id_Cliente']; ?>&setor=<?= $row['id_setor']; ?>" class="btn btn-success">Entrar</a></td>
+                                <td><a href="../../../Peditar.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" class="btn btn-success">Entrar</a></td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" value="<?php echo $row['id_setor'] ?>" class="marcar" name="idsClientes[]"></td>
