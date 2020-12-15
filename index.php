@@ -74,7 +74,7 @@ $rows = $dbd->query($sql);
                     <li><a href="Lfun.php">Cadastrados</a></li>
                 </ul>
             </li>
-            <li><a href="#">Sair</a></li>
+            <li><a href="sair.php">Sair</a></li>
         </ul>
     </nav>
 
@@ -96,11 +96,11 @@ $rows = $dbd->query($sql);
             }
         }
     </style>
-    <link href="form-validation.css?2" rel="stylesheet">
+    <!-- <link href="form-validation.css?2" rel="stylesheet"> -->
 
     <title>ESTERILAV OS</title>
 </head>
-<link href="form-validation.css?2" rel="stylesheet">
+<!-- <link href="form-validation.css?2" rel="stylesheet"> -->
 <script src="js/jquery.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css?2">
 </head>

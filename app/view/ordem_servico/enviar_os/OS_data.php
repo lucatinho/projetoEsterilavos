@@ -113,3 +113,6 @@ $nomeSetor = $dados['nomeSetor'];
         }
     </script>
 </body>
+
+
+<?php include '../../footer/footer.php'; ?>

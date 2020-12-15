@@ -117,12 +117,13 @@ $rows = $dbd->query($sql);
 
 <body class="bg-light">
 	<div class="container">
-		<center>
-			<h1>Funcionários</h1>
-		</center>
-
-		<div class="row" style="margin-top: 10px;">
+		<div class="row" style="margin-top: 80px;">
 			<div class="col-md-10 col-md-offset-1">
+				<center>
+					<h1>Funcionários</h1>
+				</center>
+
+
 				<table class="table">
 					<a style="float:left; margin-top:20px;" class="btn btn-info" href="Fun.php">Cadastrar Funcionários</a>
 					<br><br>
@@ -164,7 +165,7 @@ $rows = $dbd->query($sql);
 					<form action="deleteSelecionadosLfun.php" method="POST">
 						<table class="table table-hover">
 							<thead>
-								<input type="submit" name="btnLfun" class="btn btn-danger" value="Deletar Selecionados"></a>
+								<!-- <input type="submit" name="btnLfun" class="btn btn-danger" value="Deletar Selecionados"></a> -->
 								<tr>
 									<th><input type="checkbox" name="sn" onclick="marcarTodos(this.checked);"></th>
 									<th>ID.</th>
@@ -213,11 +214,11 @@ $rows = $dbd->query($sql);
 	</div>
 </body>
 <div class="mt-5 pt-2 pb-1 footer" style="position:absolute;">
-  <div class="about-company">
-    <p style="text-align:center; font-size:12px;" class="text-white-50">ESTERILAV COM. E MANUT. DE EQUIP. HOSP. LTDA-EPP | CNPJ nº
-      52.119.963/0001-02 </p>
-    <p style="text-align:center; font-size:12px;" class="text-white-50"><small>Copyright © Esterilav. (Lei 9610 de 19/02/1998)</small></p>
-  </div>
+	<div class="about-company">
+		<p style="text-align:center; font-size:12px;" class="text-white-50">ESTERILAV COM. E MANUT. DE EQUIP. HOSP. LTDA-EPP | CNPJ nº
+			52.119.963/0001-02 </p>
+		<p style="text-align:center; font-size:12px;" class="text-white-50"><small>Copyright © Esterilav. (Lei 9610 de 19/02/1998)</small></p>
+	</div>
 </div>
 
 </html>
