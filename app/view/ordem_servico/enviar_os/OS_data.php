@@ -53,10 +53,11 @@ $nomeSetor = $dados['nomeSetor'];
                 <center>
                     <h1>Enviar OS</h1>
                 </center>
-
+                <hr>
                 <center>
                     <h4>Cliente: <?php echo $NomeC ?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Setor: <?php echo $nomeSetor ?></h4>
                 </center>
+                <hr>
 
 
                 <table class="table">
@@ -92,7 +93,7 @@ $nomeSetor = $dados['nomeSetor'];
                             </select>
 
                         </div>
-
+                        <br>
                         <!-- </div> -->
                         <button type="button" class="btn btn-primary" onclick="pegarValores()">pesquisar</button>
                     </form>

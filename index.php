@@ -137,12 +137,12 @@ $rows = $dbd->query($sql);
                             function confirmacao(id) {
                                 var resposta = confirm("Deseja remover esse registro?");
                                 if (resposta == true) {
-                                    window.location.href = "app/services/desativa_cliente.php?id=<?php echo $row['id_cliente']; ?>";
+                                    window.location.href = "app/services/cliente/desativa_cliente.php?id=<?php echo $row['id_cliente']; ?>";
                                 }
                             }
                         </script>
 
-                        <form action="search.php?id=<?php echo $png ?>" method="post" class="form-group">
+                        <form action="app/view/clientes/clientes_search.php?id=<?php echo $png ?>" method="post" class="form-group">
                             <input type="text" placeholder="Buscar" name="search" class="form-control">
                         </form>
                     </div>
@@ -167,7 +167,7 @@ $rows = $dbd->query($sql);
                                     <!-- clicar em cliente  -->
                                     <script>
                                         function executaAcao(idCliente) {
-                                            window.location = "http://localhost/projetoEsterilavos/app/view/setores/lista_setores.php?id="+idCliente;
+                                            window.location = "http://localhost/projetoEsterilavos/app/view/setores/lista_setores.php?id=" + idCliente;
                                         }
                                     </script>
 
@@ -182,8 +182,13 @@ $rows = $dbd->query($sql);
                                         <td class="col-md-10"><?php echo $row['Cidade'] ?> </td>
                                         <td class="col-md-10"><?php echo $row['Uf'] ?> </td>
 
-                                        <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='delete.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Apagar</a>"; ?></td>
-                                        <td><a href="editarC.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-info">Editar</a></td>
+
+                                        <td>
+                                            <?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='delete.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Apagar</a>"; ?>
+                                        </td>
+
+
+                                        <td><a href="app/services/cliente/cliente_editar.php?id=<?= $row['id_Cliente']; ?>" class="btn btn-info">Editar</a></td>
 
                                     </tr>
                                 <?php endwhile; ?>

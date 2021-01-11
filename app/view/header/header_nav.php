@@ -32,6 +32,7 @@
             }
         }
     </style>
+   
     <!-- <link href="form-validation.css?2" rel="stylesheet"> -->
 
     <title>ESTERILAV OS</title>
@@ -77,3 +78,4 @@
 <!-- <link href="form-validation.css?2" rel="stylesheet"> -->
 <script src="../../../js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../../css/bootstrap.min.css?2">
+

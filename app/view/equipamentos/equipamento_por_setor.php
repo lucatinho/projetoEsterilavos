@@ -18,7 +18,7 @@ $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 $idsetor = (int)$_GET['setor'];
 $idCliente = (int)$_GET['cliente'];
 
-$sql = "SELECT * FROM peca WHERE fk_setor = $idsetor ORDER BY id_peca DESC limit " . $start . " , " . $perPage . " ;";
+$sql = "SELECT * FROM peca WHERE fk_setor = $idsetor && desativado = 0 ORDER BY id_peca DESC limit " . $start . " , " . $perPage . " ;";
 $total = $dbd->query("select * from peca")->num_rows;
 $pages = ceil($total / $perPage);
 $rows = $dbd->query($sql);
@@ -84,7 +84,7 @@ $sqlSetor = $dbd->query($sql2);
                                     <td class="col-md-10"><?php echo $row['Cor'] ?> </td>
 
 
-                                    <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='equipamento_deletar.php?id=" . $row['id_peca'] . "&idsetor=" . $idsetor . "&idcliente=" . $idCliente . "' class='btn btn-danger'>Apagar</a>"; ?></td>
+                                    <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='../../services/equipamento/desativar_equipamento.php?id=" . $row['id_peca'] . "&idsetor=" . $idsetor . "&idcliente=" . $idCliente . "' class='btn btn-danger'>Apagar</a>"; ?></td>
 
                                     <td><a href="equipamento_editar.php?idequipamento=<?= $row['id_peca']; ?>&idsetor=<?php echo $idsetor; ?>&idcliente=<?php echo $idCliente; ?>" class="btn btn-info">Editar</a></td>
                                 </tr>

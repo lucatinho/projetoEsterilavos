@@ -96,7 +96,7 @@ if (isset($_POST['search'])) {
 
 
 
-                                            <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente restaurar');\" href='../../services/restaurar_cliente.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Restaurar</a>"; ?></td>
+                                            <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente restaurar');\" href='../../services/cliente/restaurar_cliente.php?id=" . $row['id_Cliente'] . "' class='btn btn-danger'>Restaurar</a>"; ?></td>
 
 
 
