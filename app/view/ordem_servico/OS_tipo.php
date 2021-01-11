@@ -77,28 +77,28 @@ $rows = $dbd->query($sql);
                                 <th>1</th>
                                 <td class="col-md-10">Dados do equipamento</td>
 
-                                <td><a href="../../../Peditar.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" class="btn btn-success">Entrar</a></td>
+                                <td><a href="../equipamentos/equipamento_visualizar.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" class="btn btn-success">Entrar</a></td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" value="<?php echo $row['id_setor'] ?>" class="marcar" name="idsClientes[]"></td>
                                 <th>2</th>
                                 <td class="col-md-10">Gerar Nova Ordem de Serviço</td>
 
-                                <td><a href="../../../CadastrarNOS.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" class="btn btn-success">Entrar</a></td>
+                                <td><a href="OS_cadastrar.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" class="btn btn-success">Entrar</a></td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" value="<?php echo $row['id_setor'] ?>" class="marcar" name="idsClientes[]"></td>
                                 <th>3</th>
                                 <td class="col-md-10">Ordem de Serviço Executadas</td>
 
-                                <td><a href="../../../CadastrarNOS.php?cliente=<?= $sqlCliente['id_Cliente']; ?>&setor=<?= $row['id_setor']; ?>" class="btn btn-success">Entrar</a></td>
+                                <td><a href="OS_listar_executadas.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" class="btn btn-success">Entrar</a></td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" value="<?php echo $row['id_setor'] ?>" class="marcar" name="idsClientes[]"></td>
                                 <th>4</th>
                                 <td class="col-md-10">Ordem de Serviço Pendente</td>
 
-                                <td><a href="../../../CadastrarNOS.php?cliente=<?= $sqlCliente['id_Cliente']; ?>&setor=<?= $row['id_setor']; ?>" class="btn btn-success">Entrar</a></td>
+                                <td><a href="OS_listar_pendentes.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" class="btn btn-success">Entrar</a></td>
                             </tr>
 
                         </tbody>

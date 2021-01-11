@@ -10,9 +10,9 @@ include_once "../../../conexao.php";
 require_once '../../../classes/usuarios.php';
 include '../../../db.php';
 $u = new Usuario;
-$id = (int)$_GET['idequipamento'];
-$idsetor = (int)$_GET['idsetor'];
-$idcliente = (int)$_GET['idcliente'];
+$id = (int)$_GET['equipamento'];
+$idsetor = (int)$_GET['setor'];
+$idcliente = (int)$_GET['cliente'];
 $sqll = "select * from peca where id_peca = $id ";
 $rows = $dbd->query($sqll);
 ?>
@@ -27,7 +27,7 @@ $rows = $dbd->query($sqll);
             <!-- <div class="col-md-10 col-md-offset-1"> -->
 
             <!-- <img src="../../../imgs/a.png" alt="some text" width=250 height=120> -->
-            <h2>Editar Peça</h2>
+            <h2>Dados da Peça</h2>
 
         </div>
 
@@ -83,9 +83,9 @@ $rows = $dbd->query($sqll);
 
                     <div class="mb-3" >
 
-                        <input type="submit" style="float:right;" value="Cadastrar" class="btn btn-success" class="entrar">
+                        <!-- <input type="submit" style="float:right;" value="Cadastrar" class="btn btn-success" class="entrar"> -->
 
-                        <a href="equipamento_por_setor.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>" style="float:left;" class="btn btn-info">Voltar</a>
+                        <a href="../ordem_servico/OS_tipo.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $id; ?>" style="float:left;" class="btn btn-info">Voltar</a>
                     </div>
                     
                 </form>
