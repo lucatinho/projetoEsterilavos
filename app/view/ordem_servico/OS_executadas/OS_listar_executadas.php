@@ -1,4 +1,4 @@
-<?php include '../header/header_nav.php'; ?>
+<?php include '../../header/header_navCopy.php'; ?>
 
 <?php
 session_start();
@@ -8,7 +8,7 @@ if (!empty($_SESSION['id'])) {
     header("Location: login.php");
     exit;
 }
-include '../../../db.php';
+include '../../../../db.php';
 
 $idcliente = (int)$_GET['cliente'];
 $idsetor = (int)$_GET['setor'];
@@ -27,20 +27,11 @@ $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 // $total = $dbd->query("select * from cliente")->num_rows;
 // $pages = ceil($total / $perPage);
 
-$sql = "select * from os where Status = 'Em Analise' && id_OsCliente = $idcliente && ANO = $ano && MES = $mes && tipo= '$tipoformatado' ORDER BY idOS DESC ;";
+$sql = "select * from os where Status != 'Em Analise' && ANO = $ano && MES = $mes && tipo= '$tipoformatado' ORDER BY idOS DESC ;";
 $total = $dbd->query("select * from os")->num_rows;
 $pages = ceil($total / $perPage);
 
 $rows = $dbd->query($sql);
-
-$sql1 = "select * from cliente where id_Cliente = $idcliente ";
-$sqlClientes = $dbd->query($sql1);
-// pegar nome setor
-$sql2 = "select * from setores where id_setor = $idsetor ";
-$sqlSetor = $dbd->query($sql2);
-// pegar nome equipamento
-$sql3 = "select * from peca where id_peca = $idequipamento ";
-$sqlEquipamento = $dbd->query($sql3);
 ?>
 
 
@@ -51,30 +42,16 @@ $sqlEquipamento = $dbd->query($sql3);
             <div class="col-md-10 col-md-offset-1">
                 <table class="table">
                     <center>
-                        <h1>OS Pendentes</h1>
+                        <h1>OS Executadas</h1>
                     </center>
-                    <table class="table">
-                    <?php while ($row = $sqlClientes->fetch_assoc()) : ?>
-                        <th>Cliente: <?= $row['Nome'] ?></th>
-                    <?php endwhile; ?>
-                    <?php while ($row = $sqlSetor->fetch_assoc()) : ?>
-                        <th>Setor: <?= $row['nomeSetor'] ?></th>
-                    <?php endwhile; ?>
-                    <?php while ($row = $sqlEquipamento->fetch_assoc()) : ?>
-                    <th>Equipamento: <?= $row['Nome'] ?></th>
-                    <?php endwhile; ?>
-                    <br>
-                    <th>Ano: <?=  $ano ?></th>
-                    <th>Mês: <?=  $mes ?></th>
-                    </table>
 
                     <div class="col-md-12 text-center">
                         <?php
                         $png = 1;
                         ?>
-                        <!-- <form action="clientes_desativados_search.php?id=<?php echo $png ?>" method="post" class="form-group">
+                        <form action="clientes_desativados_search.php?id=<?php echo $png ?>" method="post" class="form-group">
                             <input type="text" placeholder="Buscar" name="search" class="form-control">
-                        </form> -->
+                        </form>
                     </div>
 
                     <table class="table table-hover">
@@ -106,7 +83,7 @@ $sqlEquipamento = $dbd->query($sql3);
                                         <td class="col-md-10"><?php echo $row['MES'] ?> </td>
                                         <td class="col-md-10"><?php echo $row['ANO'] ?> </td>
 
-                                        
+                                        <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente restaurar');\" href='../../services/cliente/restaurar_cliente.php?id=" . $row['idOS'] . "' class='btn btn-danger'>Restaurar</a>"; ?></td>
 
 
                                     </tr>
@@ -130,11 +107,11 @@ $sqlEquipamento = $dbd->query($sql3);
             </div>
             
         </div>
-        <a href="OS_listar_pendentes_filtro.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" style="float:left;" class="btn btn-info">Voltar</a>
+        <a href="OS_listar_executadas_filtro.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" style="float:left;" class="btn btn-info">Voltar</a>
     </div>
 
 </body>
 
 
 
-<?php include '../footer/footer.php'; ?>
+<?php include '../../footer/footer.php'; ?>
