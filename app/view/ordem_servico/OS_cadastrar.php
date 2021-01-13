@@ -30,30 +30,36 @@ $resultado2 = mysqli_query($connection, $sql2);
 $dados2 = mysqli_fetch_assoc($resultado2);
 $NomeSetor = $dados2['nomeSetor'];
 // pegar nome equipamento
-$sql3 = "SELECT Nome FROM peca WHERE id_peca = $idequipamento";
+// $sql3 = "SELECT Nome FROM peca WHERE id_peca = $idequipamento";
+// $resultado = mysqli_query($connection, $sql3);
+// $dados = mysqli_fetch_assoc($resultado);
+// $NomeEquipamento = $dados['Nome'];
+
+// pegar nome equipamento tabela nova
+$sql3 = "SELECT modelo FROM pecac WHERE id_peca = $idequipamento";
 $resultado = mysqli_query($connection, $sql3);
 $dados = mysqli_fetch_assoc($resultado);
-$NomeEquipamento = $dados['Nome'];
+$NomeEquipamento = $dados['modelo'];
 
-$sqll = "SELECT * FROM peca ORDER BY id_peca  ;";
+$sqll = "SELECT * FROM pecac ORDER BY id_peca  ;";
 $rows = $dbd->query($sqll);
 
 
 //index.php
 
-$connect = new PDO("mysql:host=127.0.0.1:3306;dbname=u558134221_esterilavos", "u558134221_esterilavos", "Q*sçxyym34y5$");
-function fill_unit_select_box($connect)
-{
-  $output = '';
-  $query = "SELECT * FROM peca ";
-  $statement = $connect->prepare($query);
-  $statement->execute();
-  $result = $statement->fetchAll();
-  foreach ($result as $row) {
-    $output .= '<option value="' . $row["Nome"] . '">' . $row["Nome"] . '</option>';
-  }
-  return $output;
-}
+// $connect = new PDO("mysql:host=127.0.0.1:3306;dbname=u558134221_esterilavos", "u558134221_esterilavos", "Q*sçxyym34y5$");
+// function fill_unit_select_box($connect)
+// {
+//   $output = '';
+//   $query = "SELECT * FROM pecac ";
+//   $statement = $connect->prepare($query);
+//   $statement->execute();
+//   $result = $statement->fetchAll();
+//   foreach ($result as $row) {
+//     $output .= '<option value="' . $row["Nome"] . '">' . $row["Nome"] . '</option>';
+//   }
+//   return $output;
+// }
 
 
 ?>
@@ -118,7 +124,7 @@ function fill_unit_select_box($connect)
         <br>
 
         <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data">
-          <div class="card p-2">
+          <!-- <div class="card p-2">
             <form method="post" id="insert_form">
               <div class="table-repsonsive">
                 <span id="error"></span>
@@ -135,7 +141,7 @@ function fill_unit_select_box($connect)
               </div>
             </form>
 
-          </div>
+          </div> -->
       </div>
 
 
@@ -369,12 +375,6 @@ if (isset($_FILES['arquivo'])) {
   $diretorio = "fotos/"; //define o diretorio para onde enviaremos o arquivo
 
   move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome); //efetua o upload
-
-
-
-
-
-
 
 
   //verificando se todos os campos nao estao vazios

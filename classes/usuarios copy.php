@@ -38,28 +38,25 @@
 
 
     //  public function cadastrarOS( $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs,$novo_nome,$TOS,$mes,$anos)
-    // public function cadastrarOS( $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs,$TOS,$mes,$anos)
-    public function cadastrarOS( $ANO, $AnoFabrica, $AutoCN, $AutoCS, $DATA, $id_OsCliente,$img,$MES,$Modelo,$NPART,$obs,$Status,$tipo)
+    public function cadastrarOS( $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs,$TOS,$mes,$anos)
     {
       global $pdo;
           global $msgErro;
       
         //caso nao tenha
-        $sql = $pdo->prepare("INSERT INTO os (ANO, AnoFabrica, AutoCN, AutoCS, DATA, id_OsCliente, img, MES, Modelo,NPART, obs, Status, tipo) VALUES (:ANO,:AnoFabrica, :AutoCN, :AutoCS, :DATA, :id_OsCliente, :img,:MES,:Modelo,:NPART,:obs, 'Em Analise', :tipo)");
+        $sql = $pdo->prepare("INSERT INTO os (id_OsCliente, AutoCN, AutoCS, Modelo, AnoFabrica, NPART, Obs,Status,img,ANO,MES,tipo) VALUES (:idos,:Autocalve, :AutocalveNS, :Modelo, :AnoFabrica, :Npt, :obs, 'Em Analise',:nome,:ano,:mes,:tipo)");
 
-        $sql->bindValue(":ANO", $ANO);
-        $sql->bindValue(":AnoFabrica", $AnoFabrica);
-        $sql->bindValue(":AutoCN", $AutoCN);
-        $sql->bindValue(":AutoCS", $AutoCS);
-        $sql->bindValue(":DATA", $DATA);
-        $sql->bindValue(":id_OsCliente", $id_OsCliente);
-        $sql->bindValue(":img", $img);
-        $sql->bindValue(":MES", $MES);
+        $sql->bindValue(":idos", $idos);
+        $sql->bindValue(":Autocalve", $Autocalve);
+        $sql->bindValue(":AutocalveNS", $AutocalveNS);
         $sql->bindValue(":Modelo", $Modelo);
-        $sql->bindValue(":NPART", $NPART);
+        $sql->bindValue(":AnoFabrica", $AnoFabrica);
+        $sql->bindValue(":Npt", $Npt);
         $sql->bindValue(":obs", $obs);
-        $sql->bindValue(":Status", $Status);
-        $sql->bindValue(":tipo", $tipo);
+        //  $sql->bindValue(":nome", $novo_nome);
+        $sql->bindValue(":ano", $anos);
+        $sql->bindValue(":mes", $mes);
+        $sql->bindValue(":tipo", $TOS);
         
 
         $sql->execute();
@@ -68,7 +65,7 @@
 
     }
 
-     public function updateOS( $id_OsCliente, $idc, $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs)
+     public function updateOS($idc, $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs)
     {
       global $pdo;
           global $msgErro;
@@ -97,28 +94,14 @@
 
     }
     
-// public function upPC($id,$Nome, $NumeroS, $Tamanho, $Cor, $Marca,$Tipo)
-//     {
-//       global $pdo;
-//           global $msgErro;
-      
-//         //caso nao 
-//      $sql = $pdo->prepare("UPDATE peca SET  Nome='$Nome', NumeroS='$NumeroS', Tamanho='$Tamanho', Cor='$Cor', Marca='$Marca',
-//      Tipo='$Tipo' where id_peca = '$id'");
-
-//         $sql->execute();
-//         return true;
-      
-
-//     }
-    public function upPC($id,$id_peca, $Numero_serie, $numero_patrimonio, $modelo, $fabricante,$tensao,$autoclave)
+public function upPC($id,$Nome, $NumeroS, $Tamanho, $Cor, $Marca,$Tipo)
     {
       global $pdo;
           global $msgErro;
       
         //caso nao 
-     $sql = $pdo->prepare("UPDATE pecac SET  id_peca='$id_peca', Numero_serie='$Numero_serie', numero_patrimonio='$numero_patrimonio', modelo='$modelo', fabricante='$fabricante', tensao='$tensao',
-     autoclave='$autoclave' where id_peca = '$id'");
+     $sql = $pdo->prepare("UPDATE peca SET  Nome='$Nome', NumeroS='$NumeroS', Tamanho='$Tamanho', Cor='$Cor', Marca='$Marca',
+     Tipo='$Tipo' where id_peca = '$id'");
 
         $sql->execute();
         return true;

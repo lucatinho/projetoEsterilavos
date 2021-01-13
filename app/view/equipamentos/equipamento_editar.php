@@ -13,7 +13,7 @@ $u = new Usuario;
 $id = (int)$_GET['idequipamento'];
 $idsetor = (int)$_GET['idsetor'];
 $idcliente = (int)$_GET['idcliente'];
-$sqll = "select * from peca where id_peca = $id ";
+$sqll = "select * from pecac where id_peca = $id ";
 $rows = $dbd->query($sqll);
 ?>
 
@@ -46,22 +46,68 @@ $rows = $dbd->query($sqll);
                 <form class="needs-validation" novalidate method="POST">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="lastName">Nome</label>
-                            <input type="text" name="Nome" class="form-control" value="<?php echo $row['Nome'] ?>">
+                            <label for="lastName">Numero</label>
+                            <input type="text" name="id_peca" class="form-control" value="<?php echo $row['id_peca'] ?>">
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="lastName">Numero Serie</label>
-                            <input type="text" name="NumeroS" class="form-control" value="<?php echo $row['NumeroS'] ?>">
+                            <input type="text" name="Numero_serie" class="form-control" value="<?php echo $row['Numero_serie'] ?>">
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName">Numero de patrimonio</label>
+                            <input type="text" name="numero_patrimonio" class="form-control" value="<?php echo $row['numero_patrimonio'] ?>">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName">Modelo</label>
+                            <input type="text" name="modelo" class="form-control" value="<?php echo $row['modelo'] ?>">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName">Fabricante</label>
+                            <input type="text" name="fabricante" class="form-control" value="<?php echo $row['fabricante'] ?>">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName">Tensão</label>
+                            <input type="text" name="tensao" class="form-control" value="<?php echo $row['tensao'] ?>">
+                        </div>
+                        <div class="col-md-6 mb-3" >
+                            <label for="exampleFormControlSelect1" >Setor</label>
+                            <select class="form-control" name="fk_setor" disabled>
+                                <option value="CME">CME</option>
+                                <option value="LACTARIO">LACTÁRIO</option>
+                                <option value="LABORATORIO">LABORATÓRIO</option>
+                                <option value="OUTROS">OUTROS</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName">AutoClave</label>
+                            <input type="text" name="autoclave" class="form-control" value="<?php echo $row['autoclave'] ?>">
+                        </div>
+
                     </div>
 
                     <div class="mb-3">
-                        <label for="username">Tamanho</label>
+
+                        <input type="submit" style="float:right;" value="Cadastrar" class="btn btn-success" class="entrar" >
+
+                        <a href="equipamento_por_setor.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>" style="float:left;" class="btn btn-info">Voltar</a>
+                    </div> 
+
+
+
+
+
+                    <!-- <div class="mb-3">
+                        <label for="username">Ano</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                             </div>
-                            <input type="text" class="form-control" name="Tamanho" value="<?php echo $row['Tamanho'] ?>">
+                            <input type="text" class="form-control" name="Tamanho" value="<?php echo $row['Ano'] ?>">
                         </div>
                     </div>
 
@@ -81,13 +127,13 @@ $rows = $dbd->query($sqll);
                         <input type="email" class="form-control" name="Tipo" value="<?php echo $row['Tipo'] ?>">
                     </div>
 
-                    <div class="mb-3" >
+                    <div class="mb-3">
 
                         <input type="submit" style="float:right;" value="Cadastrar" class="btn btn-success" class="entrar">
 
                         <a href="equipamento_por_setor.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>" style="float:left;" class="btn btn-info">Voltar</a>
-                    </div>
-                    
+                    </div> -->
+
                 </form>
                 <!-- </div> -->
             </div>
@@ -104,28 +150,38 @@ $rows = $dbd->query($sqll);
 <?php include '../footer/footer.php'; ?>
 
 <?php
-if (isset($_POST['Nome'])) {
+if (isset($_POST['id_peca'])) {
 
-    $Nome = addslashes($_POST['Nome']);
-    $NumeroS = addslashes($_POST['NumeroS']);
-    $Tamanho = addslashes($_POST['Tamanho']);
-    $Cor = addslashes($_POST['Cor']);
-    $Marca = addslashes($_POST['Marca']);
-    $Tipo = addslashes($_POST['Tipo']);
+    // $Nome = addslashes($_POST['Nome']);
+    // $NumeroS = addslashes($_POST['NumeroS']);
+    // $Tamanho = addslashes($_POST['Tamanho']);
+    // $Cor = addslashes($_POST['Cor']);
+    // $Marca = addslashes($_POST['Marca']);
+    // $Tipo = addslashes($_POST['Tipo']);
+    // $id = (int)$_GET['idequipamento'];
+
+    $id_peca = addslashes($_POST['id_peca']);
+    $Numero_serie = addslashes($_POST['Numero_serie']);
+    $numero_patrimonio = addslashes($_POST['numero_patrimonio']);
+    $modelo = addslashes($_POST['modelo']);
+    $fabricante = addslashes($_POST['fabricante']);
+    $tensao = addslashes($_POST['tensao']);
+    $autoclave = addslashes($_POST['autoclave']);
     $id = (int)$_GET['idequipamento'];
 
 
 
     //verificando se todos os campos nao estao vazios
-    if (!empty($Nome) && !empty($NumeroS) && !empty($Tamanho) && !empty($Cor)
-        && !empty($Marca) && !empty($Tipo) && !empty($id)) {
+    if (
+        !empty($id_peca) && !empty($Numero_serie) && !empty($numero_patrimonio) && !empty($modelo)
+        && !empty($fabricante) && !empty($tensao) && !empty($id) && !empty($autoclave)
+    ) {
 
         $u->conectar("u558134221_esterilavos", "127.0.0.1:3306", "u558134221_esterilavos", "Q*sçxyym34y5$");  //Conectando ao banco de dados
         if ($u->msgErro == "") //conectado normalmente;
         {
 
-            if ($u->upPC($id, $Nome, $NumeroS, $Tamanho, $Cor, $Marca, $Tipo)) {
-               
+            if ($u->upPC($id, $id_peca, $Numero_serie, $numero_patrimonio, $modelo, $fabricante, $tensao, $autoclave)) {
             }
         } else {
             echo "Erro: " . $u->msgErro;

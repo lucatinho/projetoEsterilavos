@@ -24,7 +24,7 @@ $sqlClientes = $dbd->query($sql1);
 // pegar nome setor
 $sql2 = "select * from setores where id_setor = $idsetor ";
 $sqlSetor = $dbd->query($sql2);
-// pegar nome equipamento
+// pegar nome equipamento antigo
 $sql3 = "select * from peca where id_peca = $idequipamento ";
 $sqlEquipamento = $dbd->query($sql3);
 // $sqll = "select * from cliente where id_Cliente = $idcliente ";

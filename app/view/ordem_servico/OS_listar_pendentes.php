@@ -27,7 +27,7 @@ $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 // $total = $dbd->query("select * from cliente")->num_rows;
 // $pages = ceil($total / $perPage);
 
-$sql = "select * from os where Status = 'Em Analise' && id_OsCliente = $idcliente && ANO = $ano && MES = $mes && tipo= '$tipoformatado' ORDER BY idOS DESC ;";
+$sql = "select * from os where Status = 'Aprovado' && id_OsCliente = $idcliente && ANO = $ano && MES = $mes && tipo= '$tipoformatado' ORDER BY idOS DESC ;";
 $total = $dbd->query("select * from os")->num_rows;
 $pages = ceil($total / $perPage);
 
@@ -117,24 +117,12 @@ $sqlEquipamento = $dbd->query($sql3);
                         
                     </table>
 
-                    <center>
-                        <ul class="pagination">
-                            <?php for ($i = 1; $i <= $pages; $i++) : ?>
-
-
-                                <li><a href="?page=<?php echo $i; ?>&per-page=<?php echo $perPage; ?>"><?php echo $i; ?></a></li>
-
-                            <?php endfor; ?>
-                        </ul>
-                    </center>
+                  
             </div>
             
         </div>
         <a href="OS_listar_pendentes_filtro.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" style="float:left;" class="btn btn-info">Voltar</a>
     </div>
-
 </body>
-
-
 
 <?php include '../footer/footer.php'; ?>
