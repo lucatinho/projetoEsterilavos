@@ -83,8 +83,8 @@ $rows = $dbd->query($sql);
                                         <td class="col-md-10"><?php echo $row['MES'] ?> </td>
                                         <td class="col-md-10"><?php echo $row['ANO'] ?> </td>
 
-                                        <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente restaurar');\" href='../../services/cliente/restaurar_cliente.php?id=" . $row['idOS'] . "' class='btn btn-danger'>Ver</a>"; ?></td>
-
+                                        
+                                        <td><a href="../OS_visualizar.php?idos=<?= $row['idOS']; ?>&setor=<?php echo $idsetor; ?>&cliente=<?php echo $idcliente; ?>&equipamento=<?php echo $idequipamento; ?>&ano=<?php echo $ano; ?>&mes=<?php echo $mes; ?>&tipo=<?php echo $tipo; ?>" class="btn btn-info">Ver</a></td>
 
                                     </tr>
 

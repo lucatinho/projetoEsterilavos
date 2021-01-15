@@ -16,6 +16,7 @@ $u = new Usuario;
 $id = (int)$_GET['cliente'];
 $idsetor = (int)$_GET['setor'];
 $idequipamento = (int)$_GET['equipamento'];
+$Status = 'Em Analise';
 
 $connection = mysqli_connect("127.0.0.1:3306", "u558134221_esterilavos", "Q*sçxyym34y5$");
 $db = mysqli_select_db($connection, 'u558134221_esterilavos');
@@ -87,26 +88,27 @@ $rows = $dbd->query($sqll);
             <div>
               <h6 class="my-0">Cliente : <?php echo $NomeC ?></h6>
             </div>
-            <span class="text-muted">ID:<?php echo $id; ?></span>
+            <span name="id_OsCliente" value="<?php echo $id; ?>" class="text-muted">ID:<?php echo $id; ?></span>
           </li>
           <!-- setor -->
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
               <h6 class="my-0">Setor : <?php echo $NomeSetor ?></h6>
             </div>
-            <span class="text-muted">ID:<?php echo $idsetor; ?></span>
+            <span name="idsetor" value="<?php echo $idsetor; ?>" class="text-muted">ID:<?php echo $idsetor; ?></span>
           </li>
           <!-- equipamento -->
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
               <h6 class="my-0">Equipamento : <?php echo $NomeEquipamento ?></h6>
             </div>
-            <span class="text-muted">ID:<?php echo $idequipamento; ?></span>
+            <span name="idequipamento" value="<?php echo $idequipamento; ?>" class="text-muted">ID:<?php echo $idequipamento; ?></span>
           </li>
 
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
-              <img class="d-block mx-auto mb-4" src="<?php echo $aux; ?>" alt=""> </div>
+              <img class="d-block mx-auto mb-4" src="<?php echo $aux; ?>" alt="">
+            </div>
 
           </li>
         </ul>
@@ -169,17 +171,14 @@ $rows = $dbd->query($sqll);
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3"></h4>
 
-
-
         <div class="row">
-
 
           <div class="col-md-6 mb-3">
             <label for="exampleFormControlSelect1">Tipo OS</label>
-            <select class="form-control" name="TOS">
-              <option value="t01">1</option>
-              <option value="t02">2</option>
-              <option value="t03">3</option>
+            <select class="form-control" name="tipo">
+              <option value="t01">Tipo 1</option>
+              <option value="t02">Tipo 2</option>
+              <option value="t03">Tipo 3</option>
             </select>
           </div>
 
@@ -204,11 +203,11 @@ $rows = $dbd->query($sqll);
           </div>
 
           <div class="col-md-2 mb-3">
-            <label for="exampleFormControlSelect1">Tipo OS</label>
-            <select class="form-control" name="ano">
-              <option value="t01">2020</option>
-              <option value="t02">2021</option>
-              <option value="t03">2022</option>
+            <label for="exampleFormControlSelect1">Ano</label>
+            <select class="form-control" name="ANO">
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
             </select>
           </div>
 
@@ -259,17 +258,17 @@ $rows = $dbd->query($sqll);
           <input type="text" class="form-control" id="address2" name="obs" placeholder="">
         </div>
 
-        <div class="card p-2">
+        <!-- <div class="card p-2">
           <div class="mb-3">
             Adicionar fotos:
             <br>
             <input type="file" required name="arquivo">
           </div>
-        </div>
+        </div> -->
         <hr>
-        <input type="submit" value="Salvar" style="float:right;" class="btn btn-success" class="entrar">
+        <input type="submit" value="Finalizar" style="float:right;" class="btn btn-success" class="entrar">
 
-        
+
         <a href="OS_tipo.php?cliente=<?php echo $id; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" style="float:left;" class="btn btn-info">Voltar</a>
       </div>
     </div>
@@ -278,123 +277,55 @@ $rows = $dbd->query($sqll);
 
     </form>
   </div>
-  
+
 
 
   </div>
 
-</body>
 
-<script>
-  $(document).ready(function() {
 
-    $(document).on('click', '.add', function() {
-      var html = '';
-      html += '<tr>';
-      html += '<td><input type="text" name="qtd[]" class="form-control item_quantity" /></td>';
-      html += '<td><select name="Nome[]" class="form-control item_unit"><option value="">Peça</option><?php echo fill_unit_select_box($connect); ?></select></td>';
-      html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove"><span class="glyphicon glyphicon-minus">-</span></button></td></tr>';
-      $('#item_table').append(html);
-    });
+  <?php
 
-    $(document).on('click', '.remove', function() {
-      $(this).closest('tr').remove();
-    });
+  if (isset($_POST['Modelo'])) {
 
-    $('#insert_form').on('submit', function(event) {
-      event.preventDefault();
-      var error = '';
-      $('.Nome').each(function() {
-        var count = 1;
-        if ($(this).val() == '') {
-          error += "<p>Enter Item Name at " + count + " Row</p>";
-          return false;
+    // echo $Status;
+
+    $ANO = addslashes($_POST['ANO']);
+    $AnoFabrica = addslashes($_POST['AnoFabrica']);
+    // $AutoCN = addslashes($_POST['AutoCN']);
+    // $AutoCS = addslashes($_POST['AutoCS']);
+    // $DATA = addslashes($_POST['DATA']);
+    $id_OsCliente = (int)$_GET['cliente'];
+    // $img = addslashes($_POST['img']);
+    $MES = addslashes($_POST['mes']);
+    $Modelo = addslashes($_POST['Modelo']);
+    // $NPART = addslashes($_POST['NPART']);
+    $obs = addslashes($_POST['obs']);
+    $Status = addslashes($Status);
+    $tipo = addslashes($_POST['tipo']);
+
+
+
+    //verificando se todos os campos nao estao vazios
+    if (
+      !empty($ANO) && !empty($AnoFabrica) && !empty($id_OsCliente) && !empty($MES) && !empty($Modelo)
+      && !empty($obs) && !empty($Status) && !empty($tipo)
+    ) {
+      $u->conectar("u558134221_esterilavos", "127.0.0.1:3306", "u558134221_esterilavos", "Q*sçxyym34y5$"); //Conectando ao banco de dados 
+      if ($u->msgErro == "") //conectado normalmente;
+      {
+
+        // if ($u->cadastrarOS($idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs, $novo_nome, $TOS, $mes, $anos)) {
+        if ($u->cadastrarOS($ANO, $AnoFabrica, $id_OsCliente, $MES, $Modelo, $obs, $Status, $tipo)) {
+
+          // echo "aaaaaa";
         }
-        count = count + 1;
-      });
-
-      $('.qtd').each(function() {
-        var count = 1;
-        if ($(this).val() == '') {
-          error += "<p>Enter Item Quantity at " + count + " Row</p>";
-          return false;
-        }
-        count = count + 1;
-      });
-
-      var form_data = $(this).serialize();
-      if (error == '') {
-        $.ajax({
-          url: "../../../insert.php",
-          method: "POST",
-          data: form_data,
-          success: function(data) {
-            if (data == 'ok') {
-              $('#item_table').find("tr:gt(0)").remove();
-              $('#error').html('<div class="alert alert-success">Item Details Saved</div>');
-            }
-          }
-        });
       } else {
-        $('#error').html('<div class="alert alert-danger">' + error + '</div>');
-      }
-    });
-
-  });
-</script>
-
-<div class="mt-5 pt-2 pb-1 footer">
-  <div class="about-company">
-    <p style="text-align:center; font-size:12px;" class="text-white-50">ESTERILAV COM. E MANUT. DE EQUIP. HOSP. LTDA-EPP | CNPJ nº
-      52.119.963/0001-02 </p>
-    <p style="text-align:center; font-size:12px;" class="text-white-50"><small>Copyright © Esterilav. (Lei 9610 de 19/02/1998)</small></p>
-  </div>
-</div>
-
-</html>
-
-<?php
-
-if (isset($_FILES['arquivo'])) {
-
-  $TOS = addslashes($_POST['TOS']);
-  $anos = addslashes($_POST['ano']);
-  $mes = addslashes($_POST['mes']);
-  $Autocalve = addslashes($_POST['Autocalve']);
-  $AutocalveNS = addslashes($_POST['AutocalveNS']);
-  $Modelo = addslashes($_POST['Modelo']);
-  $AnoFabrica = addslashes($_POST['AnoFabrica']);
-  $Npt = addslashes($_POST['Npt']);
-  $obs = addslashes($_POST['obs']);
-  $idos = (int)$_GET['cliente'];
-
-
-  $msg = false;
-  $extensao = strtolower(substr($_FILES['arquivo']['name'], -4)); //pega a extensao do arquivo
-  $novo_nome = md5(time()) . $extensao; //define o nome do arquivo
-  $diretorio = "fotos/"; //define o diretorio para onde enviaremos o arquivo
-
-  move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome); //efetua o upload
-
-
-  //verificando se todos os campos nao estao vazios
-  if (
-    !empty($Autocalve) && !empty($AutocalveNS) && !empty($Modelo) && !empty($AnoFabrica)
-    && !empty($Npt) && !empty($obs) && !empty($idos) && !empty($anos) && !empty($mes) && !empty($TOS)
-  ) {
-    $u->conectar("u558134221_esterilavos", "127.0.0.1:3306", "u558134221_esterilavos", "Q*sçxyym34y5$"); //Conectando ao banco de dados 
-    if ($u->msgErro == "") //conectado normalmente;
-    {
-
-      // if ($u->cadastrarOS($idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs, $novo_nome, $TOS, $mes, $anos)) {
-      if ($u->cadastrarOS($idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs, $TOS, $mes, $anos)) {
+        echo "Erro: " . $u->msgErro;
       }
     } else {
-      echo "Erro: " . $u->msgErro;
+      echo "Preencha todos os campos!";
     }
-  } else {
-    echo "Preencha todos os campos!";
   }
-}
 
-?>
+  ?>

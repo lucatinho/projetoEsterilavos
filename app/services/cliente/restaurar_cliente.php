@@ -1,6 +1,6 @@
 <?php 
 
- include '../../db.php'; 
+ include '../../../db.php'; 
 
 $id = (int)$_GET['id'];
 
@@ -10,7 +10,7 @@ $val = $dbd->query($sql);
 
 if($val){
 
-header('location: ../../index.php');
+header('location: ../../../index.php');
 
 };
 

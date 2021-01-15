@@ -27,7 +27,7 @@ $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 // $total = $dbd->query("select * from cliente")->num_rows;
 // $pages = ceil($total / $perPage);
 
-$sql = "select * from os where Status = 'Aprovado' && id_OsCliente = $idcliente && ANO = $ano && MES = $mes && tipo= '$tipoformatado' ORDER BY idOS DESC ;";
+$sql = "select * from os where Status = 'Em Analise' && id_OsCliente = $idcliente && ANO = $ano && MES = $mes && tipo= '$tipoformatado' ORDER BY idOS DESC ;";
 $total = $dbd->query("select * from os")->num_rows;
 $pages = ceil($total / $perPage);
 
@@ -106,8 +106,7 @@ $sqlEquipamento = $dbd->query($sql3);
                                         <td class="col-md-10"><?php echo $row['MES'] ?> </td>
                                         <td class="col-md-10"><?php echo $row['ANO'] ?> </td>
 
-                                        
-
+                                        <td><a href="OS_editar.php?idos=<?= $row['idOS']; ?>&setor=<?php echo $idsetor; ?>&cliente=<?php echo $idcliente; ?>&equipamento=<?php echo $idequipamento; ?>&ano=<?php echo $ano; ?>&mes=<?php echo $mes; ?>&tipo=<?php echo $tipo; ?>" class="btn btn-info">Editar</a></td>
 
                                     </tr>
 

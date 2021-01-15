@@ -39,28 +39,22 @@
 
     //  public function cadastrarOS( $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs,$novo_nome,$TOS,$mes,$anos)
     // public function cadastrarOS( $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs,$TOS,$mes,$anos)
-    public function cadastrarOS( $ANO, $AnoFabrica, $AutoCN, $AutoCS, $DATA, $id_OsCliente,$img,$MES,$Modelo,$NPART,$obs,$Status,$tipo)
+    public function cadastrarOS( $ANO, $AnoFabrica,$id_OsCliente,$MES,$Modelo,$obs,$Status,$tipo)
     {
       global $pdo;
           global $msgErro;
       
         //caso nao tenha
-        $sql = $pdo->prepare("INSERT INTO os (ANO, AnoFabrica, AutoCN, AutoCS, DATA, id_OsCliente, img, MES, Modelo,NPART, obs, Status, tipo) VALUES (:ANO,:AnoFabrica, :AutoCN, :AutoCS, :DATA, :id_OsCliente, :img,:MES,:Modelo,:NPART,:obs, 'Em Analise', :tipo)");
+        $sql = $pdo->prepare("INSERT INTO os (ANO, AnoFabrica, id_OsCliente, MES, Modelo, obs, Status, tipo) VALUES (:ANO,:AnoFabrica,:id_OsCliente,:MES,:Modelo,:obs,:Status,:tipo)");
 
         $sql->bindValue(":ANO", $ANO);
         $sql->bindValue(":AnoFabrica", $AnoFabrica);
-        $sql->bindValue(":AutoCN", $AutoCN);
-        $sql->bindValue(":AutoCS", $AutoCS);
-        $sql->bindValue(":DATA", $DATA);
         $sql->bindValue(":id_OsCliente", $id_OsCliente);
-        $sql->bindValue(":img", $img);
         $sql->bindValue(":MES", $MES);
         $sql->bindValue(":Modelo", $Modelo);
-        $sql->bindValue(":NPART", $NPART);
         $sql->bindValue(":obs", $obs);
         $sql->bindValue(":Status", $Status);
         $sql->bindValue(":tipo", $tipo);
-        
 
         $sql->execute();
         return true;
@@ -68,13 +62,24 @@
 
     }
 
-     public function updateOS( $id_OsCliente, $idc, $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs)
+    //  public function updateOS( $id_OsCliente, $idc, $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs)
+    // {
+    //   global $pdo;
+    //       global $msgErro;
+      
+    //     //caso nao tenha
+    //     $sql = $pdo->prepare("UPDATE os SET id_OsCliente='$idos', AutoCN='$Autocalve', AutoCS='$AutocalveNS', Modelo='$Modelo', AnoFabrica='$AnoFabrica', NPART='$Npt', Obs='$obs' WHERE idOS = '$idc'");
+
+    //     $sql->execute();
+    //     return true;
+    // }
+    public function updateOS($idOS, $NPART, $Modelo)
     {
       global $pdo;
           global $msgErro;
       
-        //caso nao tenha
-        $sql = $pdo->prepare("UPDATE os SET id_OsCliente='$idos', AutoCN='$Autocalve', AutoCS='$AutocalveNS', Modelo='$Modelo', AnoFabrica='$AnoFabrica', NPART='$Npt', Obs='$obs' WHERE idOS = '$idc'");
+        //caso nao 
+     $sql = $pdo->prepare("UPDATE os SET  idOS='$idOS', NPART='$NPART', Modelo='$Modelo' where idOS = '$idOS'");
 
         $sql->execute();
         return true;

@@ -77,43 +77,54 @@ $sqlEquipamento = $dbd->query($sql3);
                 </table>
                 <hr>
 
-                <table class="table table-hover">
+                <table class="table">
 
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" name="sn" onclick="marcarTodos(this.checked);"></th>
-                            <th>ID.</th>
-                            <th>Nome</th>
-                        </tr>
-                    </thead>
 
-                    <tbody>
+                    <div class="col-md-2 mb-3">
+                        <label for="exampleFormControlSelect1">Tipo</label>
+                        <select class="form-control" name="tipo" id="tipo">
+                            <option value="01">Avaliação</option>
+                            <option value="02">Corretiva</option>
+                            <option value="03">Preventiva</option>
+                        </select>
 
-                        <tr>
-                            <td><input type="checkbox" value="<?php echo $row['id_setor'] ?>" class="marcar" name="idsClientes[]"></td>
-                            <th>1</th>
-                            <td class="col-md-10">Tipo de Ordem se Serviço</td>
 
-                            <td><a href="OS_listar_executadas_filtro.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" class="btn btn-success">Entrar</a></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" value="<?php echo $row['id_setor'] ?>" class="marcar" name="idsClientes[]"></td>
-                            <th>2</th>
-                            <td class="col-md-10">Uploud de imagem</td>
+                    </div>
+                    <div class="card p-2">
+                        <div class="mb-3">
+                            Adicionar Imagens:
+                            <br>
+                            <input type="file" required name="arquivo">
+                        </div>
+                    </div>
+                    <!-- <div class="row"> -->
 
-                            <td><a href="../upload_img/OS_executada_upload.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" class="btn btn-success">Entrar</a></td>
-                        </tr>
-                    
 
-                    </tbody>
 
-                </table>
+
+
+                   
             </div>
+            <br>
+            <!-- </div> -->
+            <!-- </div> -->
+            <button type="button" class="btn btn-primary" style="float:right;" onclick="pegarValores()">pesquisar</button>
+            </form>
+
+            </table>
         </div>
-        <a href="../OS_tipo.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" style="float:left;" class="btn btn-info">Voltar</a>
+    </div>
+    <a href="../OS_tipo.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" style="float:left;" class="btn btn-info">Voltar</a>
     </div>
 
-
+    <script type="text/javascript">
+        function pegarValores() {
+           
+            alert("Imagem salva!");
+            // alert($ano + $mes);
+            
+        }
+    </script>
 </body>
 
 
