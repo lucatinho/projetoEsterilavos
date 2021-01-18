@@ -303,20 +303,21 @@ $rows = $dbd->query($sqll);
     $obs = addslashes($_POST['obs']);
     $Status = addslashes($Status);
     $tipo = addslashes($_POST['tipo']);
+    $fk_id_peca = (int)$_GET['equipamento'];
 
 
 
     //verificando se todos os campos nao estao vazios
     if (
       !empty($ANO) && !empty($AnoFabrica) && !empty($id_OsCliente) && !empty($MES) && !empty($Modelo)
-      && !empty($obs) && !empty($Status) && !empty($tipo)
+      && !empty($obs) && !empty($Status) && !empty($tipo) && !empty($fk_id_peca)
     ) {
       $u->conectar("u558134221_esterilavos", "127.0.0.1:3306", "u558134221_esterilavos", "Q*sçxyym34y5$"); //Conectando ao banco de dados 
       if ($u->msgErro == "") //conectado normalmente;
       {
 
         // if ($u->cadastrarOS($idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs, $novo_nome, $TOS, $mes, $anos)) {
-        if ($u->cadastrarOS($ANO, $AnoFabrica, $id_OsCliente, $MES, $Modelo, $obs, $Status, $tipo)) {
+        if ($u->cadastrarOS($ANO, $AnoFabrica, $id_OsCliente, $MES, $Modelo, $obs, $Status, $tipo, $fk_id_peca)) {
 
           // echo "aaaaaa";
         }

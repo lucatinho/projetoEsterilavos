@@ -39,13 +39,13 @@
 
     //  public function cadastrarOS( $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs,$novo_nome,$TOS,$mes,$anos)
     // public function cadastrarOS( $idos, $Autocalve, $AutocalveNS, $Modelo, $AnoFabrica, $Npt, $obs,$TOS,$mes,$anos)
-    public function cadastrarOS( $ANO, $AnoFabrica,$id_OsCliente,$MES,$Modelo,$obs,$Status,$tipo)
+    public function cadastrarOS( $ANO, $AnoFabrica,$id_OsCliente,$MES,$Modelo,$obs,$Status,$tipo,$fk_id_peca)
     {
       global $pdo;
           global $msgErro;
       
         //caso nao tenha
-        $sql = $pdo->prepare("INSERT INTO os (ANO, AnoFabrica, id_OsCliente, MES, Modelo, obs, Status, tipo) VALUES (:ANO,:AnoFabrica,:id_OsCliente,:MES,:Modelo,:obs,:Status,:tipo)");
+        $sql = $pdo->prepare("INSERT INTO os (ANO, AnoFabrica, id_OsCliente, MES, Modelo, obs, Status, tipo, fk_id_peca) VALUES (:ANO,:AnoFabrica,:id_OsCliente,:MES,:Modelo,:obs,:Status,:tipo,:fk_id_peca)");
 
         $sql->bindValue(":ANO", $ANO);
         $sql->bindValue(":AnoFabrica", $AnoFabrica);
@@ -55,6 +55,7 @@
         $sql->bindValue(":obs", $obs);
         $sql->bindValue(":Status", $Status);
         $sql->bindValue(":tipo", $tipo);
+        $sql->bindValue(":fk_id_peca", $fk_id_peca);
 
         $sql->execute();
         return true;
@@ -73,13 +74,13 @@
     //     $sql->execute();
     //     return true;
     // }
-    public function updateOS($idOS, $NPART, $Modelo)
+    public function updateOS($idOS, $NPART, $Modelo, $Status)
     {
       global $pdo;
           global $msgErro;
       
         //caso nao 
-     $sql = $pdo->prepare("UPDATE os SET  idOS='$idOS', NPART='$NPART', Modelo='$Modelo' where idOS = '$idOS'");
+     $sql = $pdo->prepare("UPDATE os SET  idOS='$idOS', NPART='$NPART', Modelo='$Modelo', Status='$Status' where idOS = '$idOS'");
 
         $sql->execute();
         return true;
@@ -168,28 +169,28 @@ public function cadastrarFU( $nome, $Endereco, $Email, $Senha, $Telefone)
 
     }
     
-    
-public function CadastrarPC( $Nome, $NumeroS, $Tamanho, $Cor, $Marca,$Tipo)
+
+public function CadastrarPC( $Nome, $Numero_serie, $modelo, $fabricante, $potencia, $tensao, $Ano, $fk_setor)
     {
       global $pdo;
           global $msgErro;
       
         //caso nao tenha
-$sql = $pdo->prepare("INSERT INTO peca (Nome, NumeroS, Tamanho, Cor, Marca, Tipo) VALUES 
-(:Nome, :NumeroS, :Tamanho, :Cor, :Marca, :Tipo)");
+$sql = $pdo->prepare("INSERT INTO pecac (Nome, Numero_serie, modelo, fabricante, potencia, tensao, Ano, fk_setor) VALUES (:Nome, :Numero_serie, :modelo, :fabricante, :potencia, :tensao, :Ano, :fk_setor)");
 
         $sql->bindValue(":Nome", $Nome);
-        $sql->bindValue(":NumeroS", $NumeroS);
-        $sql->bindValue(":Tamanho", $Tamanho);
-        $sql->bindValue(":Cor", $Cor);
-        $sql->bindValue(":Marca", $Marca);
-        $sql->bindValue(":Tipo",$Tipo);
+        $sql->bindValue(":Numero_serie", $Numero_serie);
+        $sql->bindValue(":modelo", $modelo);
+        $sql->bindValue(":fabricante", $fabricante);
+        $sql->bindValue(":potencia", $potencia);
+        $sql->bindValue(":tensao",$tensao);
+        $sql->bindValue(":Ano",$Ano);
+        $sql->bindValue(":fk_setor",$fk_setor);
     
 
         $sql->execute();
         return true;
       
-
     }
     
 
@@ -217,4 +218,3 @@ $sql = $pdo->prepare("INSERT INTO peca (Nome, NumeroS, Tamanho, Cor, Marca, Tipo
       }
     }
 }
-?>

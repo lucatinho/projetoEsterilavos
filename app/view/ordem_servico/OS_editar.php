@@ -55,7 +55,7 @@ $rows = $dbd->query($sqll);
                             <label for="lastName">NPART</label>
                             <input type="text" name="NPART" class="form-control" value="<?php echo $row['NPART'] ?>">
                         </div>
-                        
+
                         <!-- <div class="col-md-6 mb-3">
                             <label for="lastName">Obs</label>
                             <input type="text" name="Obs" class="form-control" value="<?php echo $row['Obs'] ?>">
@@ -69,21 +69,30 @@ $rows = $dbd->query($sqll);
                             </select>
                         </div> -->
 
-                        
+
 
                         <div class="col-md-6 mb-3">
                             <label for="lastName">Modelo</label>
                             <input type="text" name="Modelo" class="form-control" value="<?php echo $row['Modelo'] ?>">
                         </div>
 
+                        <div class="col-md-2 mb-3">
+                            <label for="exampleFormControlSelect1">Aprovar ?</label>
+                            <select class="form-control" name="Status">
+                                <option value="Em Analise">Em Analise</option>
+                                <option value="Aprovado">Aprovado</option>
+                                <option value="Reprovadas">Reprovado</option>
+                            </select>
+                        </div>
+
                     </div>
 
                     <div class="mb-3">
 
-                        <input type="submit" style="float:right;" value="Cadastrar" class="btn btn-success" class="entrar" >
+                        <input type="submit" style="float:right;" value="Cadastrar" class="btn btn-success" class="entrar">
 
                         <a href="OS_listar_pendentes_filtro.php?cliente=<?php echo $idcliente; ?>&setor=<?php echo $idsetor; ?>&equipamento=<?php echo $idequipamento; ?>" style="float:left;" class="btn btn-info">Voltar</a>
-                    </div> 
+                    </div>
 
 
 
@@ -144,19 +153,20 @@ if (isset($_POST['NPART'])) {
     $idOS = (int)$_GET['idos'];
     $NPART = addslashes($_POST['NPART']);
     $Modelo = addslashes($_POST['Modelo']);
+    $Status = addslashes($_POST['Status']);
     // $Obs = addslashes($_POST['Obs']);
 
 
     //verificando se todos os campos nao estao vazios
     if (
-        !empty($idOS) && !empty($NPART) && !empty($Modelo)
+        !empty($idOS) && !empty($NPART) && !empty($Modelo) && !empty($Status)
     ) {
 
         $u->conectar("u558134221_esterilavos", "127.0.0.1:3306", "u558134221_esterilavos", "Q*sçxyym34y5$");  //Conectando ao banco de dados
         if ($u->msgErro == "") //conectado normalmente;
         {
 
-            if ($u->updateOS($idOS, $NPART, $Modelo)) {
+            if ($u->updateOS($idOS, $NPART, $Modelo, $Status)) {
             }
         } else {
             echo "Erro: " . $u->msgErro;

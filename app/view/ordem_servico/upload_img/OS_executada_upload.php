@@ -42,7 +42,7 @@ $sqlClientes = $dbd->query($sql1);
 $sql2 = "select * from setores where id_setor = $idsetor ";
 $sqlSetor = $dbd->query($sql2);
 // pegar nome equipamento
-$sql3 = "select * from peca where id_peca = $idequipamento ";
+$sql3 = "select * from pecac where id_peca = $idequipamento ";
 $sqlEquipamento = $dbd->query($sql3);
 ?>
 
@@ -108,7 +108,7 @@ $sqlEquipamento = $dbd->query($sql3);
             <br>
             <!-- </div> -->
             <!-- </div> -->
-            <button type="button" class="btn btn-primary" style="float:right;" onclick="pegarValores()">pesquisar</button>
+            <button type="button" class="btn btn-primary" style="float:right;" onclick="pegarValores()">Enviar</button>
             </form>
 
             </table>

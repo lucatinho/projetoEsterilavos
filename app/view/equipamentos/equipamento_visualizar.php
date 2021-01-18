@@ -13,7 +13,7 @@ $u = new Usuario;
 $id = (int)$_GET['equipamento'];
 $idsetor = (int)$_GET['setor'];
 $idcliente = (int)$_GET['cliente'];
-$sqll = "select * from peca where id_peca = $id ";
+$sqll = "select * from pecac where id_peca = $id ";
 $rows = $dbd->query($sqll);
 ?>
 
@@ -52,33 +52,33 @@ $rows = $dbd->query($sqll);
 
                         <div class="col-md-6 mb-3">
                             <label for="lastName">Numero Serie</label>
-                            <input type="text" name="NumeroS" class="form-control" value="<?php echo $row['NumeroS'] ?>">
+                            <input type="text" name="NumeroS" class="form-control" value="<?php echo $row['Numero_serie'] ?>">
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="username">Tamanho</label>
+                        <label for="username">Modelo</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                             </div>
-                            <input type="text" class="form-control" name="Tamanho" value="<?php echo $row['Tamanho'] ?>">
+                            <input type="text" class="form-control" name="Tamanho" value="<?php echo $row['modelo'] ?>">
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="address">Cor</label>
-                        <input type="text" class="form-control" name="Cor" value="<?php echo $row['Cor'] ?>">
+                        <label for="address">Fabricante</label>
+                        <input type="text" class="form-control" name="Cor" value="<?php echo $row['fabricante'] ?>">
 
                     </div>
 
                     <div class="mb-3">
-                        <label for="email">Marca<span class="text-muted"></span></label>
-                        <input type="email" class="form-control" name="Marca" value="<?php echo $row['Marca'] ?>">
+                        <label for="email">Potencia<span class="text-muted"></span></label>
+                        <input type="email" class="form-control" name="Marca" value="<?php echo $row['potencia'] ?>">
                     </div>
 
                     <div class="mb-3">
-                        <label for="email">Tipo<span class="text-muted"></span></label>
-                        <input type="email" class="form-control" name="Tipo" value="<?php echo $row['Tipo'] ?>">
+                        <label for="email">Ano<span class="text-muted"></span></label>
+                        <input type="email" class="form-control" name="Tipo" value="<?php echo $row['Ano'] ?>">
                     </div>
 
                     <div class="mb-3" >

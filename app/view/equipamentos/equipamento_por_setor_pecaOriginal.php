@@ -18,7 +18,7 @@ $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 $idsetor = (int)$_GET['setor'];
 $idCliente = (int)$_GET['cliente'];
 
-$sql = "SELECT * FROM pecac WHERE fk_setor = $idsetor && desativado = 0 ORDER BY id_peca DESC limit " . $start . " , " . $perPage . " ;";
+$sql = "SELECT * FROM peca WHERE fk_setor = $idsetor && desativado = 0 ORDER BY id_peca DESC limit " . $start . " , " . $perPage . " ;";
 $total = $dbd->query("select * from peca")->num_rows;
 $pages = ceil($total / $perPage);
 $rows = $dbd->query($sql);
@@ -59,9 +59,9 @@ $sqlSetor = $dbd->query($sql2);
                                 <th><input type="checkbox" name="sn" onclick="marcarTodos(this.checked);"></th>
                                 <th>ID.</th>
                                 <th>Nome</th>
-                                <th>Modelo</th>
-                                <th>Potencia</th>
-                                <th>Ano</th>
+                                <th>Numero Serie</th>
+                                <th>Tamanho</th>
+                                <th>Cor</th>
                             </tr>
                         </thead>
 
@@ -79,9 +79,9 @@ $sqlSetor = $dbd->query($sql2);
                                     <td><input type="checkbox" value="<?php echo $row['id_peca'] ?>" class="marcar" name="ids_peca[]"></td>
                                     <th><?php echo $row['id_peca'] ?></th>
                                     <td class="col-md-10"><?php echo $row['Nome'] ?> </td>
-                                    <td class="col-md-10"><?php echo $row['modelo'] ?> </td>
-                                    <td class="col-md-10"><?php echo $row['potencia'] ?> </td>
-                                    <td class="col-md-10"><?php echo $row['Ano'] ?> </td>
+                                    <td class="col-md-10"><?php echo $row['NumeroS'] ?> </td>
+                                    <td class="col-md-10"><?php echo $row['Tamanho'] ?> </td>
+                                    <td class="col-md-10"><?php echo $row['Cor'] ?> </td>
 
 
                                     <td><?php echo "<a onClick=\"javascript: return confirm('Deseja realmente Deletar');\" href='../../services/equipamento/desativar_equipamento.php?id=" . $row['id_peca'] . "&idsetor=" . $idsetor . "&idcliente=" . $idCliente . "' class='btn btn-danger'>Apagar</a>"; ?></td>

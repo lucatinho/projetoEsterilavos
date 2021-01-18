@@ -27,7 +27,7 @@ $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 // $total = $dbd->query("select * from cliente")->num_rows;
 // $pages = ceil($total / $perPage);
 
-$sql = "select * from os where Status != 'Em Analise' && ANO = $ano && MES = $mes && tipo= '$tipoformatado' ORDER BY idOS DESC ;";
+$sql = "select * from os where Status != 'Em Analise' && ANO = $ano && MES = $mes && tipo= '$tipoformatado' && fk_id_peca = $idequipamento ORDER BY idOS DESC ;";
 $total = $dbd->query("select * from os")->num_rows;
 $pages = ceil($total / $perPage);
 
@@ -94,7 +94,7 @@ $rows = $dbd->query($sql);
                         
                     </table>
 
-                    <center>
+                    <!-- <center>
                         <ul class="pagination">
                             <?php for ($i = 1; $i <= $pages; $i++) : ?>
 
@@ -103,7 +103,7 @@ $rows = $dbd->query($sql);
 
                             <?php endfor; ?>
                         </ul>
-                    </center>
+                    </center> -->
             </div>
             
         </div>

@@ -10,7 +10,7 @@ $idCliente = (int)$_GET['cliente'];
 // $sql = "delete from cliente where id_Cliente = '$id'";
 
 // altera para desativado o cliente
-$sql = "update peca set desativado = 1 where id_peca = '$id'";
+$sql = "update pecac set desativado = 1 where id_peca = '$id'";
 $val = $dbd->query($sql);
 
 

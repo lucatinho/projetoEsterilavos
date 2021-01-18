@@ -27,7 +27,7 @@ $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 // $total = $dbd->query("select * from cliente")->num_rows;
 // $pages = ceil($total / $perPage);
 
-$sql = "select * from os where Status = 'Em Analise' && id_OsCliente = $idcliente && ANO = $ano && MES = $mes && tipo= '$tipoformatado' ORDER BY idOS DESC ;";
+$sql = "select * from os where Status = 'Em Analise' && id_OsCliente = $idcliente && ANO = $ano && MES = $mes && tipo= '$tipoformatado' && fk_id_peca = $idequipamento ORDER BY idOS DESC ;";
 $total = $dbd->query("select * from os")->num_rows;
 $pages = ceil($total / $perPage);
 
@@ -39,7 +39,7 @@ $sqlClientes = $dbd->query($sql1);
 $sql2 = "select * from setores where id_setor = $idsetor ";
 $sqlSetor = $dbd->query($sql2);
 // pegar nome equipamento
-$sql3 = "select * from peca where id_peca = $idequipamento ";
+$sql3 = "select * from pecac where id_peca = $idequipamento ";
 $sqlEquipamento = $dbd->query($sql3);
 ?>
 

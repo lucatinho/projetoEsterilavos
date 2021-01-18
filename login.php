@@ -45,9 +45,12 @@ $u = new Usuario;
 				<form class="login100-form validate-form" novalidate method="POST" action="valida.php" action="valida.php">
 
 
-					<span class="login100-form-title p-t-20 p-b-45">
-						<input type=image src="imgs/a.png" width="70%" height="115%">
-					</span>
+
+					<div class="login100-form-title p-t-20 p-b-45">
+						<!-- <input type=image src="imgs/a.png" width="70%" height="115%"> -->
+						<img src="imgs/a.png" alt="some text" width=70% height=115>
+						</div>
+
 
 					<div class="wrap-input100 validate-input m-b-10" data-validate="Username is required">
 						<input class="input100" type="text" name="usuario" placeholder="Username">
